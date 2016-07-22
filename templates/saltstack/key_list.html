@@ -7,8 +7,8 @@
     	<div class="col-lg-12"></div>
          	<h3 class="page-header">查看minion端keys列表</h3>
             <div class="col-lg-4">
-            <form action="/saltstack/key_accept/" method="get" role="form">
          	<ul>
+         	<form action="/saltstack/key_delete/" method="get" role="form">
             <div class="form-group">
             <label>已经认证：</label>
             <select class="form-control" multiple="" name="match">
@@ -19,6 +19,9 @@
             {% endfor %}
             </select>
             </div>
+            <button class="btn btn-primary btn-xs" type="submit">删除</button>
+            </form>
+            <form action="/saltstack/key_accept/" method="get" role="form">
             <div class="form-group">
             <label>等待认证：</label>
             <select class="form-control" multiple="" name="match">
@@ -29,7 +32,8 @@
             {% endfor %}
             </select>
             </div>
-            <button class="btn btn-primary btn-xs" type="submit">添加</button>
+            <button class="btn btn-primary btn-xs" type="submit">接受</button>
+            </form>
             <div class="form-group">
             <label>拒绝认证：</label>
             <select class="form-control" multiple="" name="match">
@@ -43,7 +47,7 @@
             <div class="form-group">
             <label>丢弃认证：</label>
             <select class="form-control" multiple="" name="match">
-            {% for i in minions.minions_denied %}
+            {% for i in minions.minions_rejected %}
                 <option>{{ i }}</option>
                 {% empty %}
                 <option>null</option>
@@ -51,7 +55,6 @@
             </select>
             </div>
             </ul>
-            </form>
             </div>
             <!--{{ minions }}-->
 		</div>
