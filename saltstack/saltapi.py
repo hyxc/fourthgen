@@ -53,7 +53,7 @@ def api_key(fun='key.list_all', match='', arg_num=0):
     html = info.getvalue()
     info.close()
     ch.close()
-    return html
+    return json.loads(html)
 
 def api_exec(target, fun, expr_form='', arg='', arg_num=0):
     api_login()
@@ -80,7 +80,7 @@ def api_exec(target, fun, expr_form='', arg='', arg_num=0):
     info.close()
     ch.close()
 #    return json.dumps(html)
-    return html
+    return json.loads(html)
  
 #测试时用的,做为模块使用时请注释下面两行
 #api_login()
