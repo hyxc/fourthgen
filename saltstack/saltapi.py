@@ -65,14 +65,17 @@ def api_exec(target, fun, expr_form='', arg='', arg_num=0):
     ch.setopt(ch.POST, True)
     ch.setopt(ch.SSL_VERIFYPEER, 0)
     ch.setopt(ch.SSL_VERIFYHOST, 2)
-    ch.setopt(ch.HTTPHEADER, ['Accept: application/x-yaml', "X-Auth-Token: %s" %(token)])
+    ch.setopt(ch.HTTPHEADER, ['Accept: application/json', "X-Auth-Token: %s" %(token)])
     if arg_num == 0:
         if target == '*':
             ch.setopt(ch.POSTFIELDS, "client=local&tgt=%s&fun=%s" %(target, fun))
         else:
             ch.setopt(ch.POSTFIELDS, "client=local&tgt=%s&expr_form=list&fun=%s" %(target, fun))
     elif arg_num == 1:
-        ch.setopt(ch.POSTFIELDS, "client=local&tgt=%s&fun=%s&arg=%s" %(target, fun, arg))    
+        if target == '*':
+            ch.setopt(ch.POSTFIELDS, "client=local&tgt=%s&fun=%s&arg=%s" %(target, fun, arg))
+        else:
+            ch.setopt(ch.POSTFIELDS, "client=local&tgt=%s&expr_form=list&fun=%s&arg=%s" %(target, fun, arg))
     elif arg_num == 2:
         ch.setopt(ch.POSTFIELDS, "client=local&tgt=%s&expr_form=%s&fun=%s&arg=%s" %(target, expr_form, fun, arg))
     else:
@@ -83,7 +86,7 @@ def api_exec(target, fun, expr_form='', arg='', arg_num=0):
     info.close()
     ch.close()
 #    return json.dumps(html)
-    return html
+    return json.loads(html)
  
 #测试时用的,做为模块使用时请注释下面两行
 #api_login()

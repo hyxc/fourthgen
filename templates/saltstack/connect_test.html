@@ -10,15 +10,18 @@
         	 	<ul>
          		<form action="/saltstack/connect_test_exec/" method="get" role="form">
             	<div class="form-group">
-            		<label>请输入IP信息：</label>
-            		<input class="form-control" name="connect_test_ip">
+            		<label style="color: green">输入IP信息：</label>
+            		<input class="form-control" name="connect_test_ip"  placeholder="多个以逗号分隔">
             		<input class="btn btn-primary btn-xs" type="submit" value="测试">
             	</div>
             <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
             	</form>
             	<div class="form-group">
-                	<label>执行结果：</label>
-                	<textarea rows="12" class="form-control">{{ connect_test_result }}</textarea>
+                	<label style="color: green">执行结果：</label>
+                	<textarea rows="12" style="background-color: black;color: green" class="form-control">{% for key, value in connect_test_result.items %}{{ key }}: 
+        {{ value }}
+{% endfor %}
+                    </textarea>
             	</div>
 	            </ul>
             </div>
@@ -26,13 +29,13 @@
             	<ul>
             	<form action="/saltstack/ip_list/" method="get" role="form">
             	<div class="form-group">
-             		<label>请输入IP列表：</label>
-            		<textarea rows="6" class="form-control" name="ip_list"></textarea>
+             		<label style="color: green">输入IP列表：</label>
+            		<textarea rows="6" class="form-control" name="ip_list" style="background-color: black;color: green" placeholder="一个IP地址占用一行"></textarea>
             	</div>
             	<button class="btn btn-primary btn-xs" type="submit">执行</button>
             	<div class="form-group">
-            	    <label>执行结果：</label>
-            	    <textarea rows="6" class="form-control">{% for i in ip_list_text %}{{ i }}{% if not forloop.last%},{% endif %}{% empty %}{% endfor %}</textarea>
+            	    <label style="color: green">执行结果：</label>
+            	    <textarea rows="6"  style="background-color: black;color: green" class="form-control">{% for i in ip_list_text %}{{ i }}{% if not forloop.last%},{% endif %}{% empty %}{% endfor %}</textarea>
             	</div>
             	</form>
             	</ul>

@@ -30,7 +30,7 @@ def connect_test(request):
 
 def connect_test_exec(request):
     connect_test_ip = request.GET['connect_test_ip']
-    connect_test_result = api_exec('%s' %(connect_test_ip), 'test.ping')
+    connect_test_result = api_exec('%s' %(connect_test_ip), 'test.ping')['return'][0]
     return render(request, 'saltstack/connect_test.html', {'connect_test_result': connect_test_result})
 
 def ip_list(request):
@@ -44,6 +44,16 @@ def ip_list(request):
         else:
             pass
     return render(request, 'saltstack/connect_test.html', {'ip_list_text': ip_list_text})
+
+def cmd_exec_html(request):
+    return render(request, 'saltstack/cmd_exec.html')
+
+def cmd_exec(request):
+    ip_list = request.GET['ip_list']
+    exec_module = request.GET['exec_module']
+    cmd_args = request.GET['cmd_args']
+    cmd_exec_result = api_exec('%s' %(ip_list), '%s' %(exec_module) , arg='%s' %(cmd_args), arg_num=1)['return'][0]
+    return render(request, 'saltstack/cmd_exec.html', {'cmd_exec_result': cmd_exec_result})
 
 def index(request):
     return render(request, 'base.html')

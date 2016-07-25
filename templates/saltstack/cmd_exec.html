@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}执行系统命令{% endblock %}
+
+{% block content %}
+<div id="page-wrapper" style="min-height: 421px;">
+    <div class="row">
+    	<div class="col-lg-12">
+         	<h3 class="page-header">执行系统命令</h3>
+            <form action="/saltstack/cmd_exec/" method="get" role="form">
+            <div class="col-lg-3">
+        	 	<ul>
+            	<div class="form-group">
+            		<label style="color: green">输入IP：</label>
+            		<input class="form-control" name="ip_list">
+                    <label style="color: green">输入模块名称：</label>
+                    <input class="form-control" name="exec_module">
+                    <label style="color: green">输入模块参数：</label>
+                    <input class="form-control" name="cmd_args">
+            		<input class="btn btn-primary btn-xs" type="submit" value="执行">
+            	</div>
+                </ul>
+            <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
+            </div>
+            <div class="col-lg-8">
+                <ul>
+                <div class="form-group">
+                    <label style="color: green">执行结果：</label>
+                    <textarea rows="24" style="background-color: black;color: green" class="form-control">{% for key, value in cmd_exec_result.items %}
+{{ key }}:
+{{ value }}
+{% endfor %}</textarea>
+                </div>
+	            </ul>
+            </div>
+            </form>
+            <!--{{ minions }}-->
+		</div>
+	</div>
+</div>
+{% endblock %}

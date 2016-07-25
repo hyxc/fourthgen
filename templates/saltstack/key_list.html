@@ -10,8 +10,8 @@
          	<ul>
          	<form action="/saltstack/key_delete/" method="get" role="form">
             <div class="form-group">
-            <label>已经认证：</label>
-            <select class="form-control" multiple="" name="match">
+            <label style="color: green">已经认证：</label>
+            <select class="form-control" multiple="" name="match" style="background-color: black;color: green">
             {% for i in minions.minions %}
                 <option>{{ i }}</option>
                 {% empty %}
@@ -23,8 +23,8 @@
             </form>
             <form action="/saltstack/key_accept/" method="get" role="form">
             <div class="form-group">
-            <label>等待认证：</label>
-            <select class="form-control" multiple="" name="match">
+            <label style="color: red">等待认证：</label>
+            <select class="form-control" multiple="" name="match" style="background-color: black;color: red">
             {% for i in minions.minions_pre %}
                 <option>{{ i }}</option>
                 {% empty %}
@@ -34,7 +34,7 @@
             </div>
             <button class="btn btn-primary btn-xs" type="submit">接受</button>
             </form>
-            <div class="form-group">
+            <!--<div class="form-group">
             <label>拒绝认证：</label>
             <select class="form-control" multiple="" name="match">
             {% for i in minions.minions_denied %}
@@ -44,7 +44,7 @@
             {% endfor %}
             </select>
             </div>
-            <!--<div class="form-group">
+            <div class="form-group">
             <label>丢弃认证：</label>
             <select class="form-control" multiple="" name="match">
             {% for i in minions.minions_rejected %}
