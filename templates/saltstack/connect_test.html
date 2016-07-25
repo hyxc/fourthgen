@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}测试minion端连通性{% endblock %}
+
+{% block content %}
+<div id="page-wrapper" style="min-height: 421px;">
+    <div class="row">
+    	<div class="col-lg-12">
+         	<h3 class="page-header">测试minion端连通性</h3>
+            <div class="col-lg-6">
+        	 	<ul>
+         		<form action="/saltstack/connect_test_exec/" method="get" role="form">
+            	<div class="form-group">
+            		<label>请输入IP信息：</label>
+            		<input class="form-control" name="connect_test_ip">
+            		<input class="btn btn-primary btn-xs" type="submit" value="测试">
+            	</div>
+            <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
+            	</form>
+            	<div class="form-group">
+                	<label>执行结果：</label>
+                	<textarea rows="12" class="form-control">{{ connect_test_result }}</textarea>
+            	</div>
+	            </ul>
+            </div>
+            <div class="col-lg-6">
+            	<ul>
+            	<form action="/saltstack/ip_list/" method="get" role="form">
+            	<div class="form-group">
+             		<label>请输入IP列表：</label>
+            		<textarea rows="6" class="form-control" name="ip_list"></textarea>
+            	</div>
+            	<button class="btn btn-primary btn-xs" type="submit">执行</button>
+            	<div class="form-group">
+            	    <label>执行结果：</label>
+            	    <textarea rows="6" class="form-control">{% for i in ip_list_text %}{{ i }}{% if not forloop.last%},{% endif %}{% empty %}{% endfor %}</textarea>
+            	</div>
+            	</form>
+            	</ul>
+            </div>
+            <!--{{ minions }}-->
+		</div>
+	</div>
+</div>
+{% endblock %}

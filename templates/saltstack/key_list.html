@@ -4,7 +4,7 @@
 {% block content %}
 <div id="page-wrapper" style="min-height: 421px;">
     <div class="row">
-    	<div class="col-lg-12"></div>
+    	<div class="col-lg-12">
          	<h3 class="page-header">查看minion端keys列表</h3>
             <div class="col-lg-4">
          	<ul>
@@ -44,7 +44,7 @@
             {% endfor %}
             </select>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
             <label>丢弃认证：</label>
             <select class="form-control" multiple="" name="match">
             {% for i in minions.minions_rejected %}
@@ -53,7 +53,7 @@
                 <option>null</option>
             {% endfor %}
             </select>
-            </div>
+            </div>-->
             </ul>
             </div>
             <!--{{ minions }}-->
