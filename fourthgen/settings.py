@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'saltstack',
     'autodeploy',
-    'hostinfo',
+    'assetmanage',
 )
 
 MIDDLEWARE_CLASSES = (

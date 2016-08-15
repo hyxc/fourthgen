@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-import saltstack,autodeploy,hostinfo
+import saltstack,autodeploy,assetmanage
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^saltstack/', include('saltstack.urls')),
+    url(r'^assetmanage/', include('assetmanage.urls')),
     url(r'^$', include('saltstack.urls')),
 ]

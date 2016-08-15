@@ -364,7 +364,7 @@
                             <a href="tables.html"><i class="fa fa-sitemap fa-fw"></i> 自动化部署<span class="fa arrow"></span></a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-archive fa-fw"></i> 主机信息列表<span class="fa arrow"></span></a>
+                            <a href="/assetmanage/asset_html/"><i class="fa fa-archive fa-fw"></i> 资产管理<span class="fa arrow"></span></a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
@@ -438,6 +438,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        {% block content %}
+        {% endblock %}
     </div>
      <!--   <div id="page-wrapper" style="min-height: 421px;">
             <div class="row">
@@ -544,8 +546,7 @@
 	</div>
 
 </nav> -->
-    {% block content %}
-    {% endblock %}
+
 
     <!-- jQuery -->
     <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
@@ -564,8 +565,14 @@
     <script src="{% static "dist/js/sb-admin-2.js" %}"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-
     <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
+    <!--<script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
@@ -579,7 +586,7 @@
     // popover demo
     $("[data-toggle=popover]")
         .popover()
-    </script>
+    </script>-->
     {% block jquery %}
 
     {% endblock %}
