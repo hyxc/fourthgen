@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}资产管理列表{% endblock %}
-{% block style %}
-{% endblock %}
+{% block title %}物理服务器信息{% endblock %}
 {% block content %}
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">资产管理</h1>
+			<h1 class="page-header">物理服务器</h1>
 		</div>
 	</div>
 	<div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                	资产信息表 
+                    物理服务器信息表<div style="float: right;"><a href="/assetmanage/asset_table_detail/" target="_blank">详细信息表...</a></div>
                 </div>
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
@@ -28,15 +26,15 @@
                                     <th>机房编号</th>
                                     <th>机柜编号</th>
                                     <th>系统类型</th>
-                                    <th>CPU型号、数目</th>
+                                    <!--<th>CPU型号、数目</th>
                                     <th>磁盘大小、数目</th>
                                     <th>内存大小、数目</th>
                                     <th>磁盘阵列</th>
                                     <th>网卡类型、数目</th>
-                                    <th>电源数目</th>
+                                    <th>电源数目</th>-->
                                     <th>服务编号</th>
-                                    <th>购买时间</th>
-                                    <th>过期时间</th>
+                                    <!--<th>购买时间</th>
+                                    <th>过期时间</th>-->
                                     <th>备注</th>
                                 </tr>
                             </thead>
@@ -45,66 +43,24 @@
                                 <tr class="gradeA">
                                     <td>{{ i.asset_num }}</td>
                                     <td>{{ i.type }}</td>
-                                    <td>{{ i.server_ip }}</td>
+                                    <td><a href="http://www.baidu.com">{{ i.server_ip }}</a></td>
                                     <td>{{ i.remote_ip }}</td>
                                     <td>{{ i.data_center }}</td>
                                     <td>{{ i.room_num }}</td>
                                     <td>{{ i.rack_num }}</td>
                                     <td>{{ i.system_type }}</td>
-                                    <td>{{ i.cputype_num }}</td>
+                                    <!--<td>{{ i.cputype_num }}</td>
                                     <td>{{ i.disksize_num }}</td>
                                     <td>{{ i.memsize_num }}</td>
                                     <td>{{ i.disk_raid }}</td>
                                     <td>{{ i.card_type_num }}</td>
-                                    <td>{{ i.power_num }}</td>
+                                    <td>{{ i.power_num }}</td>-->
                                     <td>{{ i.service_num }}</td>
-                                    <td>{{ i.buy_time }}</td>
-                                    <td>{{ i.expiration_time }}</td>
+                                    <!--<td>{{ i.buy_time }}</td>
+                                    <td>{{ i.expiration_time }}</td>-->
                                     <td class="center">{{ i.note }}</td>
                                 </tr>
                             {% endfor %}
-                                <!--<tr class="gradeX">
-                                    <td>Misc</td>
-                                    <td>Dillo 0.8</td>
-                                    <td>Embedded devices</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>Misc</td>
-                                    <td>Links</td>
-                                    <td>Text only</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>Misc</td>
-                                    <td>Lynx</td>
-                                    <td>Text only</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Misc</td>
-                                    <td>IE Mobile</td>
-                                    <td>Windows Mobile 6</td>
-                                    <td class="center">-</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Misc</td>
-                                    <td>PSP browser</td>
-                                    <td>PSP</td>
-                                    <td class="center">-</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td>Other browsers</td>
-                                    <td>All others</td>
-                                    <td>-</td>
-                                    <td class="center">-</td>
-                                    <td class="center">U</td>
-                                </tr>-->
                             </tbody>
                         </table>
                     </div>

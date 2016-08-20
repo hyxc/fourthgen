@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}物理服务器信息添加{% endblock %}
+
+{% block content %}
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">服务器信息新增</h1>
+		</div>
+	</div>
+	<div class="row">
+    	<div class="col-lg-12">
+         	<form action="/assetmanage/asset_add/" method="get" role="form">
+                    <ul>
+            		<div class="form-group col-lg-4">
+            			<label>资产编号：<input class="form-control" name="asset_num" ></label>
+                        <label>设备类型：<input class="form-control" name="type"></label>
+                        <label>服务器IP：<input class="form-control" name="server_ip"></label>
+                        <label>远控卡IP：<input class="form-control" name="remote_ip"></label>
+                        <div class="form-group">
+                            <label>数据中心：
+                                <select class="form-control" name="data_center">
+                                    <option></option>
+                                    <option>电信兆维</option>
+                                    <option>世纪互联</option>
+                                    <option>互联通</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label>机房编号：<input class="form-control" name="room_num"></label>
+            		</div>
+                    </ul>
+                    <ul>
+                    <div class="form-group col-lg-4">
+                        <label>机柜编号：<input class="form-control" name="rack_num"></label>
+                        <div class="form-group">
+                            <label>系统类型：
+                                <select class="form-control" name="system_type">
+                                    <option></option>
+                                    <option>ESXI 5.1</option>
+                                    <option>CentOS 6.5</option>
+                                    <option>CentOS 7.2</option>
+                                    <option>SUSE SP3</option>
+                                    <option>SUSE SP4</option>
+                                    <option>Ubuntu</option>
+                                    <option>Windows 2008</option>
+                                    <option>Windows 2003</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label>CPU型号、核数及个数：<input class="form-control" name="cputype_num"></label>
+                        <label>磁盘大小、数目：<input class="form-control" name="disksize_num"></label>
+                        <label>内存大小、数目：<input class="form-control" name="memsize_num"></label>
+                        <div class="form-group">
+                            <label>磁盘阵列：
+                                <select class="form-control" name="disk_raid">
+                                    <option>RAID 5</option>
+                                    <option>RAID 0</option>
+                                    <option>RAID 1</option>
+                                    <option>RAID 10</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    </ul>
+                    <ul>
+                    <div class="form-group col-lg-4">
+                        <div class="form-group">
+                            <label>网卡类型、数目：
+                                <select class="form-control" name="card_type_num">
+                                    <option>千兆x4</option>
+                                    <option>千兆x2</option>
+                                    <option>万兆x2</option>
+                                    <option>万兆x4</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>电源数目：
+                                <select class="form-control" name="power_num">
+                                    <option>2</option>
+                                    <option>1</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label>服务编号：<input class="form-control" name="service_num"></label>
+                        <label>购买时间：<input class="form-control" name="buy_time"></label>
+                        <label>过期时间：<input class="form-control" name="expiration_time"></label>
+                        <label>备注：<input class="form-control" name="note"></label>
+                        <br><input class="btn btn-primary btn-sm" type="submit" value="添加">
+                    </div>
+                    </ul>
+            </form>
+		</div>
+	</div>
+</div>
+{% endblock %}
