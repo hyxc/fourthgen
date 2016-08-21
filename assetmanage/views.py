@@ -69,38 +69,86 @@ def asset_add(request):
 def asset_add_html(request):
     return render(request, 'assetmanage/asset_add.html')
 
-'''def asset_del(request):
-    asset_num = request.GET['asset_num']
-    Assetmanage.objects.get(asset_num="%s" % (asset_num)).delete()
-    a=[]
-    post_list = Assetmanage.objects.all()
-    for post in post_list:
-        dict = {'asset_num': '%s' % (post.asset_num),'device_type': '%s' % (post.device_type),'local_ip': '%s' % (post.local_ip),'remote_ip': '%s' % (post.remote_ip),'system_type': '%s' % (post.system_type)}
-        a.append(dict)
-    return render(request, 'assetmanage/asset_table1.html', {'a' : a})
-
 def asset_update(request):
     asset_num = request.GET['asset_num']
-    device_type = request.GET['device_type']
-    local_ip = request.GET['local_ip']
+    type = request.GET['type']
+    server_ip = request.GET['server_ip']
     remote_ip = request.GET['remote_ip']
+    data_center = request.GET['data_center']
+    room_num = request.GET['room_num']
+    rack_num = request.GET['rack_num']
     system_type = request.GET['system_type']
+    cputype_num = request.GET['cputype_num']
+    disksize_num = request.GET['disksize_num']
+    memsize_num = request.GET['memsize_num']
+    disk_raid = request.GET['disk_raid']
+    card_type_num = request.GET['card_type_num']
+    power_num = request.GET['power_num']
+    service_num = request.GET['service_num']
+    buy_time = request.GET['buy_time']
+    expiration_time = request.GET['expiration_time']
+    note = request.GET['note']
     update = Assetmanage.objects.get(asset_num="%s" % (asset_num))
-    if device_type != '':
-        update.device_type = "%s" % (device_type)
+    if type != '':
+        update.type = "%s" % (type)
         update.save()
-    if local_ip != '':
-        update.local_ip = "%s" % (local_ip)
+    if server_ip != '':
+        update.server_ip = "%s" % (server_ip)
         update.save()
     if remote_ip != '':
         update.remote_ip = "%s" % (remote_ip)
         update.save()
+    if data_center != '':
+        update.data_center = "%s" % (data_center)
+        update.save()
+    if room_num != '':
+        update.room_num = "%s" % (room_num)
+        update.save()
+    if rack_num != '':
+        update.rack_num = "%s" % (rack_num)
+        update.save()
     if system_type != '':
         update.system_type = "%s" % (system_type)
         update.save()
-    a=[]
-    post_list = Assetmanage.objects.all()
-    for post in post_list:
-        dict = {'asset_num': '%s' % (post.asset_num),'device_type': '%s' % (post.device_type),'local_ip': '%s' % (post.local_ip),'remote_ip': '%s' % (post.remote_ip),'system_type': '%s' % (post.system_type)}
-        a.append(dict)
-    return render(request, 'assetmanage/asset_table1.html', {'a' : a})'''
+    if cputype_num != '':
+        update.cputype_num = "%s" % (cputype_num)
+        update.save()
+    if disksize_num != '':
+        update.disksize_num = "%s" % (disksize_num)
+        update.save()
+    if memsize_num != '':
+        update.memsize_num = "%s" % (memsize_num)
+        update.save()
+    if disk_raid != '':
+        update.disk_raid = "%s" % (disk_raid)
+        update.save()
+    if card_type_num != '':
+        update.card_type_num = "%s" % (card_type_num)
+        update.save()
+    if power_num != '':
+        update.power_num = "%s" % (power_num)
+        update.save()
+    if service_num != '':
+        update.service_num = "%s" % (service_num)
+        update.save()
+    if buy_time != '':
+        update.buy_time = "%s" % (buy_time)
+        update.save()
+    if expiration_time != '':
+        update.expiration_time = "%s" % (expiration_time)
+        update.save()
+    if note != '':
+        update.note = "%s" % (note)
+        update.save()
+    return render(request, 'assetmanage/asset_update.html')
+
+def asset_update_html(request):
+    return render(request, 'assetmanage/asset_update.html')
+
+def asset_del(request):
+    asset_num = request.GET['asset_num']
+    Assetmanage.objects.get(asset_num="%s" % (asset_num)).delete()
+    return render(request, 'assetmanage/asset_del.html')
+
+def asset_del_html(request):
+    return render(request, 'assetmanage/asset_del.html')
