@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Assetmanage(models.Model):
@@ -23,6 +24,9 @@ class Assetmanage(models.Model):
 
     def __unicode__(self):
         return self.asset_num
+
+    def get_host_url(self):
+        return reverse('host_list', args=(self.server_ip,))
 
 class Hostinfo(models.Model):
     host_ip =  models.ForeignKey(Assetmanage,related_name='asset_set')

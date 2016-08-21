@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^host_update/$', views.host_update, name='host_update'),
     url(r'^host_del_html/$', views.host_del_html, name='host_del_html'),
     url(r'^host_del/$', views.host_del, name='host_del'),
+    url(r'^host_list/(?P<server_ip>[^/]+)/$', views.host_list, name='host_list'),
 ]

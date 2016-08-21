@@ -69,7 +69,7 @@
                         <tr class="gradeA">
                             <td>{{ i.asset_num }}</td>
                             <td>{{ i.type }}</td>
-                            <td>{{ i.server_ip }}</td>
+                            <td><a href="{{ i.assetget_url.get_host_url }}" target="_blank">{{ i.server_ip }}</a></td>
                             <td>{{ i.remote_ip }}</td>
                             <td>{{ i.data_center }}</td>
                             <td>{{ i.room_num }}</td>

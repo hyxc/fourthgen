@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Assetmanage
-from .models import Hostinfo
+#from django.http import HttpResponse
+from .models import Assetmanage, Hostinfo
 # Create your views here.
 def asset_table(request):
     a=[]
@@ -15,7 +15,7 @@ def asset_table(request):
                 'disk_raid': '%s' % (asset.disk_raid),'card_type_num': '%s' % (asset.card_type_num),
                 'power_num': '%s' % (asset.power_num),'service_num': '%s' % (asset.service_num),
                 'buy_time': '%s' % (asset.buy_time),'expiration_time': '%s' % (asset.expiration_time),
-                'note': '%s' % (asset.note)}
+                'note': '%s' % (asset.note),'assetget_url': asset}
         a.append(asset_dict)
     return render(request, 'assetmanage/asset_table.html', {'a' : a})
 
@@ -32,7 +32,7 @@ def asset_table_detail(request):
                 'disk_raid': '%s' % (asset.disk_raid),'card_type_num': '%s' % (asset.card_type_num),
                 'power_num': '%s' % (asset.power_num),'service_num': '%s' % (asset.service_num),
                 'buy_time': '%s' % (asset.buy_time),'expiration_time': '%s' % (asset.expiration_time),
-                'note': '%s' % (asset.note)}
+                'note': '%s' % (asset.note),'assetget_url': asset}
         a.append(asset_dict_detail)
     return render(request, 'assetmanage/asset_table_detail.html', {'a' : a})
 
@@ -236,3 +236,15 @@ def host_del(request):
 
 def host_del_html(request):
     return render(request, 'assetmanage/host_del.html')
+
+def host_list(request, server_ip):
+    b=[]
+    host_list = Assetmanage.objects.get(server_ip=server_ip).asset_set.all()
+    for host in host_list:
+        host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                    'app': '%s' % (host.app),'host_name': '%s' % (host.host_name),
+                    'system_version': '%s' % (host.system_version),
+                    'cpu_num': '%s' % (host.cpu_num),'disk_size': '%s' % (host.disk_size),
+                    'mem_size': '%s' % (host.mem_size),'host_note': '%s' % (host.host_note)}
+        b.append(host_dict)
+    return render(request, 'assetmanage/host_table.html', {'b' : b})
