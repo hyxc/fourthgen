@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}虚拟主机信息删除{% endblock %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">主机信息删除</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <form action="/assetmanage/host_del/" method="get" role="form">
+                    <ul>
+                    <div class="form-group col-lg-2">
+                        <label style="color: red">主机IP：<input class="form-control" name="local_ip" ></label>
+                    </div>
+                    <br><input class="btn btn-danger btn-sm" type="submit" value="删除">
+                    </ul>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

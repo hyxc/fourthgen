@@ -164,3 +164,75 @@ def host_table(request):
                 'mem_size': '%s' % (host.mem_size),'host_note': '%s' % (host.host_note)}
         b.append(host_dict)
     return render(request, 'assetmanage/host_table.html', {'b' : b})
+
+def host_add(request):
+    host_ip = Assetmanage.objects.get(server_ip=request.GET['host_ip'])
+    local_ip = request.GET['local_ip']
+    app = request.GET['app']
+    host_name = request.GET['host_name']
+    system_version = request.GET['system_version']
+    cpu_num = request.GET['cpu_num']
+    disk_size = request.GET['disk_size']
+    mem_size = request.GET['mem_size']
+    host_note = request.GET['host_note']
+    Hostinfo.objects.create(host_ip=host_ip,local_ip="%s" % (local_ip),
+                               app="%s" % (app),host_name="%s" % (host_name),
+                               system_version="%s" % (system_version),cpu_num="%s" % (cpu_num),
+                               disk_size="%s" % (disk_size),mem_size="%s" % (mem_size),
+                               host_note="%s" % (host_note))
+    return render(request, 'assetmanage/host_add.html')
+
+def host_add_html(request):
+    return render(request, 'assetmanage/host_add.html')
+
+def host_update(request):
+    server_ip=request.GET['host_ip']
+    if server_ip != '':
+        host_ip = Assetmanage.objects.get(server_ip=server_ip)
+    else:
+        host_ip = ''
+    local_ip = request.GET['local_ip']
+    app = request.GET['app']
+    host_name = request.GET['host_name']
+    system_version = request.GET['system_version']
+    cpu_num = request.GET['cpu_num']
+    disk_size = request.GET['disk_size']
+    mem_size = request.GET['mem_size']
+    host_note = request.GET['host_note']
+    update = Hostinfo.objects.get(local_ip="%s" % (local_ip))
+    if host_ip != '':
+        update.host_ip=host_ip
+        update.save()
+    if app != '':
+        update.app = "%s" % (app)
+        update.save()
+    if host_name != '':
+        update.host_name = "%s" % (host_name)
+        update.save()
+    if system_version != '':
+        update.system_version = "%s" % (system_version)
+        update.save()
+    if cpu_num != '':
+        update.cpu_num = "%s" % (cpu_num)
+        update.save()
+    if disk_size != '':
+        update.disk_size = "%s" % (disk_size)
+        update.save()
+    if mem_size != '':
+        update.mem_size = "%s" % (mem_size)
+        update.save()
+    if host_note != '':
+        update.host_note = "%s" % (host_note)
+        update.save()
+    return render(request, 'assetmanage/host_update.html')
+
+def host_update_html(request):
+    return render(request, 'assetmanage/host_update.html')
+
+def host_del(request):
+    local_ip = request.GET['local_ip']
+    Hostinfo.objects.get(local_ip="%s" % (local_ip)).delete()
+    return render(request, 'assetmanage/host_del.html')
+
+def host_del_html(request):
+    return render(request, 'assetmanage/host_del.html')
