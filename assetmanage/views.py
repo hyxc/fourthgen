@@ -152,3 +152,15 @@ def asset_del(request):
 
 def asset_del_html(request):
     return render(request, 'assetmanage/asset_del.html')
+
+def host_table(request):
+    b=[]
+    host_list = Hostinfo.objects.all()
+    for host in host_list:
+        host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_name': '%s' % (host.host_name),
+                'system_version': '%s' % (host.system_version),
+                'cpu_num': '%s' % (host.cpu_num),'disk_size': '%s' % (host.disk_size),
+                'mem_size': '%s' % (host.mem_size),'host_note': '%s' % (host.host_note)}
+        b.append(host_dict)
+    return render(request, 'assetmanage/host_table.html', {'b' : b})
