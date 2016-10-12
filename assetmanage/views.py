@@ -55,7 +55,10 @@ def asset_add(request):
     buy_time = request.GET['buy_time']
     expiration_time = request.GET['expiration_time']
     note = request.GET['note']
-    Assetmanage.objects.create(asset_num="%s" % (asset_num),type="%s" % (type),
+    if server_ip == "" or server_ip == "" or service_num == "":
+        return render(request, 'assetmanage/asset_add_null.html')
+    else:
+        Assetmanage.objects.create(asset_num="%s" % (asset_num),type="%s" % (type),
                                server_ip="%s" % (server_ip),remote_ip="%s" % (remote_ip),
                                data_center="%s" % (data_center),room_num="%s" % (room_num),
                                rack_num="%s" % (rack_num),system_type="%s" % (system_type),
@@ -64,7 +67,7 @@ def asset_add(request):
                                card_type_num="%s" % (card_type_num),power_num="%s" % (power_num),
                                service_num="%s" % (service_num),buy_time="%s" % (buy_time),
                                expiration_time="%s" % (expiration_time),note="%s" % (note))
-    return render(request, 'assetmanage/asset_add.html')
+        return render(request, 'assetmanage/asset_add.html')
 
 def asset_add_html(request):
     return render(request, 'assetmanage/asset_add.html')

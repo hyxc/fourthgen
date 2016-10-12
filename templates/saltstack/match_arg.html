@@ -1,30 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}测试minion端连通性{% endblock %}
+{% block title %}生成minion匹配值{% endblock %}
 
 {% block content %}
 <div id="page-wrapper" style="min-height: 421px;">
     <div class="row">
     	<div class="col-lg-12">
-         	<h3 class="page-header">测试minion端连通性</h3>
-            <div class="col-lg-6">
-        	 	<ul>
-         		<form action="/saltstack/connect_test_exec/" method="get" role="form">
-            	<div class="form-group">
-            		<label style="color: green">输入IP信息：</label>
-            		<input class="form-control" name="connect_test_ip"  placeholder="多个以逗号分隔">
-            		<input class="btn btn-primary btn-xs" type="submit" value="测试">
-            	</div>
-            <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
-            	</form>
-            	<div class="form-group">
-                	<label style="color: green">执行结果：</label>
-                	<textarea rows="12" style="background-color: black;color: green" class="form-control">{% for key, value in connect_test_result.items %}{{ key }}: 
-        {{ value }}
-{% endfor %}
-                    </textarea>
-            	</div>
-	            </ul>
-            </div>
+         	<h3 class="page-header">生成minion匹配值</h3>
             <div class="col-lg-6">
             	<ul>
             	<form action="/saltstack/ip_list/" method="get" role="form">
