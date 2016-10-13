@@ -20,6 +20,7 @@ import saltstack,autodeploy,assetmanage
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^saltstack/', include('saltstack.urls')),
+    url(r'^autodeploy/', include('autodeploy.urls')),
     url(r'^assetmanage/', include('assetmanage.urls')),
     url(r'^$', include('saltstack.urls')),
 ]
