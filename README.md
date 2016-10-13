@@ -2,8 +2,14 @@
 #截图
 minion认证管理
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/minion_auth_man.jpg)
+生成minion匹配值
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/out_minion_arg.jpg)
 执行远程SHELL
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/remote_execute_shell.jpg)
+执行States编排
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/remote_execute_state.jpg)
+自动化部署应用
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/autodeploy_app.jpg)
 服务器信息新增
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/server_info_add.jpg)
 物理服务器列表
