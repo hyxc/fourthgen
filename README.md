@@ -1,5 +1,7 @@
 # fourthgen
 #截图
+login界面
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/login.jpg)
 minion认证管理
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/minion_auth_man.jpg)
 生成minion匹配值

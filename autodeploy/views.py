@@ -1,11 +1,14 @@
 from django.shortcuts import render
+from accounts.decorators import login_required
 
 # Create your views here.
 from saltstack.saltapi import *
 
+@login_required
 def app_deploy_html(request):
     return render(request, 'autodeploy/app_deploy.html')
 
+@login_required
 def app_deploy(request):
     ip_list = request.GET['ip_list']
     exec_module = "state.sls"

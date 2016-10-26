@@ -17,5 +17,4 @@ urlpatterns = [
     url(r'^minion_service_start/$', views.minion_service_start, name='minion_service_start'),
     url(r'^minion_install_html/$', views.minion_install_html, name='minion_install_html'),
     url(r'^minion_install/$', views.minion_install, name='minion_install'),
-    url(r'^$', views.index, name='ba'),
 ]

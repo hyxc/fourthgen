@@ -1,7 +1,9 @@
 from django.shortcuts import render
-#from django.http import HttpResponse
+from accounts.decorators import login_required
 from .models import Assetmanage, Hostinfo
 # Create your views here.
+
+@login_required
 def asset_table(request):
     a=[]
     asset_list = Assetmanage.objects.all()
@@ -19,6 +21,7 @@ def asset_table(request):
         a.append(asset_dict)
     return render(request, 'assetmanage/asset_table.html', {'a' : a})
 
+@login_required
 def asset_table_detail(request):
     a=[]
     asset_list_detail = Assetmanage.objects.all()
@@ -36,6 +39,7 @@ def asset_table_detail(request):
         a.append(asset_dict_detail)
     return render(request, 'assetmanage/asset_table_detail.html', {'a' : a})
 
+@login_required
 def asset_add(request):
     asset_num = request.GET['asset_num']
     type = request.GET['type']
@@ -69,9 +73,11 @@ def asset_add(request):
                                expiration_time="%s" % (expiration_time),note="%s" % (note))
         return render(request, 'assetmanage/asset_add.html')
 
+@login_required
 def asset_add_html(request):
     return render(request, 'assetmanage/asset_add.html')
 
+@login_required
 def asset_update(request):
     asset_num = request.GET['asset_num']
     type = request.GET['type']
@@ -145,17 +151,21 @@ def asset_update(request):
         update.save()
     return render(request, 'assetmanage/asset_update.html')
 
+@login_required
 def asset_update_html(request):
     return render(request, 'assetmanage/asset_update.html')
 
+@login_required
 def asset_del(request):
     asset_num = request.GET['asset_num']
     Assetmanage.objects.get(asset_num="%s" % (asset_num)).delete()
     return render(request, 'assetmanage/asset_del.html')
 
+@login_required
 def asset_del_html(request):
     return render(request, 'assetmanage/asset_del.html')
 
+@login_required
 def host_table(request):
     b=[]
     host_list = Hostinfo.objects.all()
@@ -168,6 +178,7 @@ def host_table(request):
         b.append(host_dict)
     return render(request, 'assetmanage/host_table.html', {'b' : b})
 
+@login_required
 def host_add(request):
     host_ip = Assetmanage.objects.get(server_ip=request.GET['host_ip'])
     local_ip = request.GET['local_ip']
@@ -185,9 +196,11 @@ def host_add(request):
                                host_note="%s" % (host_note))
     return render(request, 'assetmanage/host_add.html')
 
+@login_required
 def host_add_html(request):
     return render(request, 'assetmanage/host_add.html')
 
+@login_required
 def host_update(request):
     server_ip=request.GET['host_ip']
     if server_ip != '':
@@ -229,17 +242,21 @@ def host_update(request):
         update.save()
     return render(request, 'assetmanage/host_update.html')
 
+@login_required
 def host_update_html(request):
     return render(request, 'assetmanage/host_update.html')
 
+@login_required
 def host_del(request):
     local_ip = request.GET['local_ip']
     Hostinfo.objects.get(local_ip="%s" % (local_ip)).delete()
     return render(request, 'assetmanage/host_del.html')
 
+@login_required
 def host_del_html(request):
     return render(request, 'assetmanage/host_del.html')
 
+@login_required
 def host_list(request, server_ip):
     b=[]
     host_list = Assetmanage.objects.get(server_ip=server_ip).asset_set.all()

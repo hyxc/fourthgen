@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'saltstack',
     'autodeploy',
     'assetmanage',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
