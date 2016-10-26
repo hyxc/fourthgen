@@ -1,8 +1,4 @@
 # fourthgen
-#FourthGen部署步骤
-* 系统环境：CentOS6.5 64bit
-* 部署说明：[点击跳转](http://blog.csdn.net/hnhuangyiyang/article/details/52775097)
-<br>
 #截图
 login界面
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/login.jpg)
@@ -28,4 +24,8 @@ minion认证管理
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/Associated_virtual_host_con.jpg)
 关联虚拟主机
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/Associated_virtual_host.jpg)
-
+<br>
+**FourthGen部署步骤:**
+系统环境：CentOS6.5 64bit
+部署说明：[点击跳转](http://blog.csdn.net/hnhuangyiyang/article/details/52775097)
+<br>
