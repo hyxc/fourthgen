@@ -1,5 +1,5 @@
 # fourthgen
-**FourthGen部署步骤：**
+#FourthGen部署步骤
 * 系统环境：CentOS6.5 64bit
 * 部署说明：[点击跳转](http://blog.csdn.net/hnhuangyiyang/article/details/52775097)
 <br>
