@@ -1,5 +1,7 @@
 # fourthgen
 #截图
+FourthGen部署步骤
+[CentOS6.5 运维平台FourthGen部署说明](http://blog.csdn.net/hnhuangyiyang/article/details/52775097)
 login界面
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/login.jpg)
 minion认证管理
