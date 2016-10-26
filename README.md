@@ -1,7 +1,6 @@
 # fourthgen
 #截图
-<br>
-FourthGen部署说明：[点击跳转](http://blog.csdn.net/hnhuangyiyang/article/details/52775097)
+**FourthGen部署说明：**[点击跳转](http://blog.csdn.net/hnhuangyiyang/article/details/52775097)
 <br>
 login界面
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/login.jpg)
