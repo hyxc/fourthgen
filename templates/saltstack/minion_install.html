@@ -2,37 +2,62 @@
 {% block title %}自动化部署minion{% endblock %}
 
 {% block content %}
-<div id="page-wrapper" style="min-height: 421px;">
+<div id="page-wrapper">
     <div class="row">
-    	<div class="col-lg-12">
-         	<h3 class="page-header">自动化部署minion</h3>
-            <form action="/saltstack/minion_install/" method="get" role="form">
-            <div class="col-lg-3">
-        	 	<ul>
-            	<div class="form-group">
-            		<label style="color: green">输入远程IP：</label>
-            		<input class="form-control" name="ip_list" placeholder="多个IP以逗号分隔">
+        <div class="col-lg-12">
+            <h3 class="page-header">自动化部署minion</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li><a href="/saltstack/key_list/">minion认证管理</a>
+                </li>
+                <li><a href="/saltstack/match_arg/">生成minion匹配值</a>
+                </li>
+                <li><a href="/saltstack/minion_service_start_html/">管理minion服务</a>
+                </li>
+                <li class="active"><a href="/saltstack/minion_install_html/">自动化部署minion</a>
+                </li>
+                <li><a href="/saltstack/cmd_exec_html/">执行系统命令</a>
+                </li>
+                <li><a href="/saltstack/state_exec_html/">执行States编排</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                    <br>
+                        <form action="/saltstack/minion_install/" method="get" role="form">
+                        <div class="col-lg-3">
+                            <ul>
+                            <div class="form-group">
+                                <label style="color: green">输入远程IP：</label>
+                                <input class="form-control" name="ip_list" placeholder="多个IP以逗号分隔">
                     <!--<label style="color: green">输入模块名称：</label>
                     <input class="form-control" name="exec_module">-->
-            		<input class="btn btn-primary btn-xs" type="submit" value="部署">
-            	</div>
-                </ul>
+                                <input class="btn btn-primary btn-xs" type="submit" value="部署">
+                            </div>
+                            </ul>
             <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
-            </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-8">
-                <ul>
-                <div class="form-group">
-                    <label style="color: green">执行结果：</label>
-                    <textarea rows="24" style="background-color: black;color: green" class="form-control">
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-8">
+                            <ul>
+                            <div class="form-group">
+                                <label style="color: green">执行结果：</label>
+                                <textarea rows="18" style="background-color: black;color: green" class="form-control">
 {{ minion_install_result }}
-                    </textarea>
+                                </textarea>
+                            </div>
+                            </ul>
+                        </div>
+                        </form>
+                    </div>
                 </div>
-	            </ul>
             </div>
-            </form>
-            <!--{{ minions }}-->
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 {% endblock %}

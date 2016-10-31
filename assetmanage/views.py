@@ -267,4 +267,4 @@ def host_list(request, server_ip):
                     'cpu_num': '%s' % (host.cpu_num),'disk_size': '%s' % (host.disk_size),
                     'mem_size': '%s' % (host.mem_size),'host_note': '%s' % (host.host_note)}
         b.append(host_dict)
-    return render(request, 'assetmanage/host_table.html', {'b' : b})
+    return render(request, 'assetmanage/host_table_relate.html', {'b' : b})

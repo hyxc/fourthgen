@@ -2,27 +2,52 @@
 {% block title %}生成minion匹配值{% endblock %}
 
 {% block content %}
-<div id="page-wrapper" style="min-height: 421px;">
+<div id="page-wrapper">
     <div class="row">
-    	<div class="col-lg-12">
-         	<h3 class="page-header">生成minion匹配值</h3>
-            <div class="col-lg-6">
-            	<ul>
-            	<form action="/saltstack/ip_list/" method="get" role="form">
-            	<div class="form-group">
-             		<label style="color: green">输入IP列表：</label>
-            		<textarea rows="6" class="form-control" name="ip_list" style="background-color: black;color: green" placeholder="一个IP地址占用一行"></textarea>
-            	</div>
-            	<button class="btn btn-primary btn-xs" type="submit">执行</button>
-            	<div class="form-group">
-            	    <label style="color: green">执行结果：</label>
-            	    <textarea rows="6"  style="background-color: black;color: green" class="form-control">{% for i in ip_list_text %}{{ i }}{% if not forloop.last%},{% endif %}{% empty %}{% endfor %}</textarea>
-            	</div>
-            	</form>
-            	</ul>
+        <div class="col-lg-12">
+            <h3 class="page-header">生成minion匹配值</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li><a href="/saltstack/key_list/">minion认证管理</a>
+                </li>
+                <li class="active"><a href="/saltstack/match_arg/">生成minion匹配值</a>
+                </li>
+                <li><a href="/saltstack/minion_service_start_html/">管理minion服务</a>
+                </li>
+                <li><a href="/saltstack/minion_install_html/">自动化部署minion</a>
+                </li>
+                <li><a href="/saltstack/cmd_exec_html/">执行系统命令</a>
+                </li>
+                <li><a href="/saltstack/state_exec_html/">执行States编排</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                    <br>
+                        <div class="col-lg-6">
+                            <ul>
+                            <form action="/saltstack/ip_list/" method="get" role="form">
+                            <div class="form-group">
+                                <label style="color: green">输入IP列表：</label>
+                                <textarea rows="6" class="form-control" name="ip_list" style="background-color: black;color: green" placeholder="一个IP地址占用一行"></textarea>
+                            </div>
+                            <button class="btn btn-primary btn-xs" type="submit">执行</button>
+                            <div class="form-group">
+                                <label style="color: green">执行结果：</label>
+                                <textarea rows="6"  style="background-color: black;color: green" class="form-control">{% for i in ip_list_text %}{{ i }}{% if not forloop.last%},{% endif %}{% empty %}{% endfor %}</textarea>
+                            </div>
+                            </form>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--{{ minions }}-->
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 {% endblock %}

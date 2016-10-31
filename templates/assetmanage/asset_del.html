@@ -5,19 +5,37 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">服务器信息删除</h1>
+            <h3 class="page-header">物理服务器信息</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <form action="/assetmanage/asset_del/" method="get" role="form">
-                    <ul>
-                    <div class="form-group col-lg-2">
-                        <label style="color: red">资产编号：<input class="form-control" name="asset_num" ></label>
+            <ul class="nav nav-tabs">
+                <li><a href="/assetmanage/asset_table/">查看信息</a>
+                </li>
+                <li><a href="/assetmanage/asset_add_html/">添加信息</a>
+                </li>
+                <li><a href="/assetmanage/asset_update_html/">修改信息</a>
+                </li>
+                <li class="active"><a href="/assetmanage/asset_del_html/">删除信息</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                        <br>
+                        <form action="/assetmanage/asset_del/" method="get" role="form">
+                            <ul>
+                            <div class="form-group col-lg-2">
+                                <label style="color: red"><label style="color: red">*</label> 资产编号：<input class="form-control" name="asset_num" ></label>
+                            </div>
+                            <br><input class="btn btn-danger btn-sm" type="submit" value="删除">
+                            </ul>
+                        </form>
                     </div>
-                    <br><input class="btn btn-danger btn-sm" type="submit" value="删除">
-                    </ul>
-            </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

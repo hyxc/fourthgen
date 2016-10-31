@@ -120,3 +120,45 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '%(levelname)s %(asctime)s %(pathname)s %(filename)s %(module)s %(funcName)s %(lineno)d: %(message)s'
+        },
+    },
+    'filters': {
+    },
+    'handlers': {
+        'default': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/fourthgen/all.log',
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'formatter':'standard',
+        },
+        'error': {
+            'level':'ERROR',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/fourthgen/error.log',
+            'maxBytes':1024*1024*5,
+            'backupCount': 5,
+            'formatter':'standard',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['default'],
+            'level': 'INFO',
+            'propagate': False
+        },
+        'error': {
+            'handlers': ['default','error'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}

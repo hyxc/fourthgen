@@ -2,39 +2,62 @@
 {% block title %}minion端认证管理及连通性测试{% endblock %}
 
 {% block content %}
-<div id="page-wrapper" style="min-height: 421px;">
+<div id="page-wrapper">
     <div class="row">
-    	<div class="col-lg-12">
-         	<h3 class="page-header">minion端认证管理及连通性测试</h3>
-            <div class="col-lg-4">
-                <label style="color: black;font-size: 28px">认证管理：</label>
-         	    <ul>
-         	        <form action="/saltstack/key_delete/" method="get" role="form">
-                        <div class="form-group">
-                            <label style="color: green">已经认证：</label>
-                            <select class="form-control" multiple="" name="match" style="background-color: black;color: green">
-                            {% for i in minions.minions %}
-                                <option>{{ i }}</option>
-                            {% empty %}
-                                <option>null</option>
-                            {% endfor %}
-                            </select>
-                        </div>
-                        <button class="btn btn-primary btn-xs" type="submit">删除</button>
-                    </form>
-                    <form action="/saltstack/key_accept/" method="get" role="form">
-                        <div class="form-group">
-                            <label style="color: red">等待认证：</label>
-                            <select class="form-control" multiple="" name="match" style="background-color: black;color: red">
-                            {% for i in minions.minions_pre %}
-                                <option>{{ i }}</option>
-                            {% empty %}
-                                <option>null</option>
-                            {% endfor %}
-                            </select>
-                        </div>
-                        <button class="btn btn-primary btn-xs" type="submit">接受</button>
-                    </form>
+        <div class="col-lg-12">
+            <h3 class="page-header">minion端认证管理及连通性测试</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="/saltstack/key_list/">minion认证管理</a>
+                </li>
+                <li><a href="/saltstack/match_arg/">生成minion匹配值</a>
+                </li>
+                <li><a href="/saltstack/minion_service_start_html/">管理minion服务</a>
+                </li>
+                <li><a href="/saltstack/minion_install_html/">自动化部署minion</a>
+                </li>
+                <li><a href="/saltstack/cmd_exec_html/">执行系统命令</a>
+                </li>
+                <li><a href="/saltstack/state_exec_html/">执行States编排</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+ 					<div class="row">
+ 					<br>
+            			<div class="col-lg-4">
+                			<label style="color: black;font-size: 22px">认证管理：</label>
+         	    			<ul>
+         	        			<form action="/saltstack/key_delete/" method="get" role="form">
+                        			<div class="form-group">
+                            			<label style="color: green">已经认证：</label>
+                            			<select class="form-control" multiple="" name="match" style="background-color: black;color: green">
+                            			{% for i in minions.minions %}
+                                			<option>{{ i }}</option>
+                            			{% empty %}
+                                			<option>null</option>
+                            			{% endfor %}
+                            			</select>
+                        			</div>
+                        			<button class="btn btn-primary btn-xs" type="submit">删除</button>
+                    			</form>
+                    			<form action="/saltstack/key_accept/" method="get" role="form">
+                        			<div class="form-group">
+                            			<label style="color: red">等待认证：</label>
+                            			<select class="form-control" multiple="" name="match" style="background-color: black;color: red">
+                            			{% for i in minions.minions_pre %}
+                                			<option>{{ i }}</option>
+                            			{% empty %}
+                                			<option>null</option>
+                            			{% endfor %}
+                            			</select>
+                        			</div>
+                        			<button class="btn btn-primary btn-xs" type="submit">接受</button>
+                    			</form>
             <!--<div class="form-group">
             <label>拒绝认证：</label>
             <select class="form-control" multiple="" name="match">
@@ -55,33 +78,35 @@
             {% endfor %}
             </select>
             </div>-->
-                </ul>
-            </div>
-            <div class="col-lg-1"> 
-            </div>
-            <div class="col-lg-7">
-                <label style="color: black;font-size: 28px">连通性测试：</label>
-                <ul>
-                <form action="/saltstack/connect_test_exec/" method="get" role="form">
-                <div class="form-group">
-                    <label style="color: green">输入IP信息：</label>
-                    <input class="form-control" name="connect_test_ip" placeholder="多个IP以逗号分隔">
-                    <input class="btn btn-primary btn-xs" type="submit" value="测试">
-                </div>
+                			</ul>
+            			</div>
+            			<div class="col-lg-1"> 
+            			</div>
+            			<div class="col-lg-7">
+                			<label style="color: black;font-size: 22px">连通性测试：</label>
+                			<ul>
+                			<form action="/saltstack/connect_test_exec/" method="get" role="form">
+                			<div class="form-group">
+                    			<label style="color: green">输入IP信息：</label>
+                    			<input class="form-control" name="connect_test_ip" placeholder="多个IP以逗号分隔">
+                    			<input class="btn btn-primary btn-xs" type="submit" value="测试">
+                			</div>
             <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
-                </form>
-                <div class="form-group">
-                    <label style="color: green">执行结果：</label>
-                    <textarea rows="12" style="background-color: black;color: green" class="form-control">{% for key, value in connect_test_result.items %}{{ key }}: 
+                			</form>
+                			<div class="form-group">
+                    			<label style="color: green">执行结果：</label>
+                    			<textarea rows="12" style="background-color: black;color: green" class="form-control">{% for key, value in connect_test_result.items %}{{ key }}: 
         {{ value }}
 {% endfor %}{% for key_err, value_err in err_ip.items %}{{ key_err }}:        {{ value_err }}
 {% endfor %}
-                    </textarea>
+                    			</textarea>
+                			</div>
+                			</ul>
+            			</div>
+            		</div>
                 </div>
-                </ul>
             </div>
-            <!--{{ minions }}-->
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 {% endblock %}

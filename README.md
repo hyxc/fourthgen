@@ -14,16 +14,16 @@ minion认证管理
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/remote_execute_state.jpg)
 自动化部署应用
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/autodeploy_app.jpg)
+物理服务器信息
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_info.jpg)
+物理服务器详细信息
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_details_info.jpg)
 服务器信息新增
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/server_info_add.jpg)
-物理服务器列表
-![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_list.jpg)
-物理服务器详细列表
-![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_details_list.jpg)
-虚拟主机列表
-![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/virtual_host_list.jpg)
-关联虚拟主机链接
+虚拟主机信息
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/virtual_host_info.jpg)
+物理服务器关联虚拟主机
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/Associated_virtual_host_con.jpg)
-关联虚拟主机
+关联的虚拟主机
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/Associated_virtual_host.jpg)
 

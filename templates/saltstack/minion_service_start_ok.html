@@ -2,24 +2,48 @@
 {% block title %}管理minion服务{% endblock %}
 
 {% block content %}
-<div id="page-wrapper" style="min-height: 421px;">
+<div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
             <h3 class="page-header">管理minion服务(启动)</h3>
-            <form action="/saltstack/minion_service_start/" method="get" role="form">
-            <div class="col-lg-3">
-                <ul>
-                <div class="form-group">
-                    <label style="color: green">输入远程IP：</label>
-                    <input class="form-control" name="ip_list" placeholder="多个IP以逗号分隔">
-                    <input class="btn btn-primary btn-xs" type="submit" value="启动">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li><a href="/saltstack/key_list/">minion认证管理</a>
+                </li>
+                <li><a href="/saltstack/match_arg/">生成minion匹配值</a>
+                </li>
+                <li class="active"><a href="/saltstack/minion_service_start_html/">管理minion服务</a>
+                </li>
+                <li><a href="/saltstack/minion_install_html/">自动化部署minion</a>
+                </li>
+                <li><a href="/saltstack/cmd_exec_html/">执行系统命令</a>
+                </li>
+                <li><a href="/saltstack/state_exec_html/">执行States编排</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                    <br>
+                        <form action="/saltstack/minion_service_start/" method="get" role="form">
+                        <div class="col-lg-3">
+                            <ul>
+                            <div class="form-group">
+                                <label style="color: green">输入远程IP：</label>
+                                <input class="form-control" name="ip_list" placeholder="多个IP以逗号分隔">
+                                <input class="btn btn-primary btn-xs" type="submit" value="启动">
+                            </div>
+                            <label style="color: red;font-size: 14px">启动完成！</label>
+                            </ul>
+                        </div>
+                        </form>
+                    </div>
                 </div>
-                <label style="color: red;font-size: 14px">启动完成！</label>
-                </ul>
-            <!--<button class="btn btn-primary btn-xs" type="submit">测试</button>-->
             </div>
-            </form>
-            <!--{{ minions }}-->
         </div>
     </div>
 </div>
