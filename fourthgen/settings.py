@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 MASTER_IP = '10.211.55.100'
 MASTER_API_URL_LOGIN = 'https://10.211.55.100:8000/login'
