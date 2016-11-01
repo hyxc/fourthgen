@@ -95,7 +95,7 @@ def minion_service_start_html(request):
 
 @login_required
 def minion_service_start(request):
-    master_ip = "10.211.55.100"
+    master_ip = settings.MASTER_IP
     exec_module = "cmd.run"
     cmd_args_null = ">/salt-ssh/gg"
     api_exec('%s' %(master_ip), '%s' %(exec_module) , arg='%s' %(cmd_args_null), arg_num=1)
@@ -118,7 +118,7 @@ def minion_install_html(request):
 
 @login_required
 def minion_install(request):
-    master_ip = "10.211.55.100"
+    master_ip = settings.MASTER_IP
     exec_module = "cmd.run"
     cmd_args_null = ">/salt-ssh/gg"
     api_exec('%s' %(master_ip), '%s' %(exec_module) , arg='%s' %(cmd_args_null), arg_num=1)
@@ -130,5 +130,5 @@ def minion_install(request):
     cmd_args = "sh /salt-ssh/ip.sh"
     api_exec('%s' %(master_ip), '%s' %(exec_module) , arg='%s' %(cmd_args), arg_num=1)
     cmd_install_args = "salt-ssh -i '*' state.sls minions.install"
-    minion_install_result = api_exec('%s' %(master_ip), '%s' %(exec_module) , arg='%s' %(cmd_install_args), arg_num=1)['return'][0]['10.211.55.100']
+    minion_install_result = api_exec('%s' %(master_ip), '%s' %(exec_module) , arg='%s' %(cmd_install_args), arg_num=1)['return'][0]['%s' %(settings.MASTER_IP)]
     return render(request, 'saltstack/minion_install.html', {'minion_install_result': minion_install_result})

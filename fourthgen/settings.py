@@ -121,6 +121,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
+MASTER_IP = '10.211.55.100'
+MASTER_API_URL_LOGIN = 'https://10.211.55.100:8000/login'
+MASTER_API_URL = 'https://10.211.55.100:8000/'
+SALT_API_AUTH_USER = 'hyxc'
+SALT_API_AUTH_PASS = '123456aa'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,

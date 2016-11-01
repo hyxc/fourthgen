@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
  
+from django.conf import settings
 import pycurl
 import StringIO
 import json
@@ -8,8 +9,8 @@ import json
 #登录salt-api,获取token
 def api_login():
     global token
-    url='https://10.211.55.100:8000/login'
-    ch=pycurl.Curl()    #创建一个pycurl对象的方法
+    url = settings.MASTER_API_URL_LOGIN
+    ch = pycurl.Curl()    #创建一个pycurl对象的方法
     ch.setopt(ch.URL, url)     #设置要访问的url
     info = StringIO.StringIO()     
     ch.setopt(ch.WRITEFUNCTION, info.write)
@@ -18,7 +19,7 @@ def api_login():
     ch.setopt(ch.SSL_VERIFYPEER, 0)
     ch.setopt(ch.SSL_VERIFYHOST, 2)
     ch.setopt(ch.HTTPHEADER, ['Accept: application/x-yaml'])
-    ch.setopt(ch.POSTFIELDS, 'username=hyxc&password=123456aa&eauth=pam')
+    ch.setopt(ch.POSTFIELDS, 'username=%s&password=%s&eauth=pam' %(settings.SALT_API_AUTH_USER, settings.SALT_API_AUTH_PASS))
     #要包头信息
     #ch.setopt(ch.HEADER, True)
     #不要包头信息
@@ -33,8 +34,8 @@ def api_login():
  
 def api_key(fun='key.list_all', match='', arg_num=0):
     api_login()
-    url='https://10.211.55.100:8000/'
-    ch=pycurl.Curl()
+    url = settings.MASTER_API_URL
+    ch = pycurl.Curl()
     ch.setopt(ch.URL, url)
     info = StringIO.StringIO()
     ch.setopt(ch.WRITEFUNCTION, info.write)
@@ -57,7 +58,7 @@ def api_key(fun='key.list_all', match='', arg_num=0):
 
 def api_exec(target, fun, expr_form='', arg='', arg_num=0):
     api_login()
-    url='https://10.211.55.100:8000/'
+    url=settings.MASTER_API_URL
     ch=pycurl.Curl()
     ch.setopt(ch.URL, url)
     info = StringIO.StringIO()
