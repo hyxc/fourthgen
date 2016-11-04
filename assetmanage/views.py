@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from accounts.decorators import login_required
 from .models import Assetmanage, Hostinfo
+from saltstack.saltapi import *
 # Create your views here.
 
 @login_required
@@ -170,12 +171,17 @@ def host_table(request):
     b=[]
     host_list = Hostinfo.objects.all()
     for host in host_list:
-        host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
-                'app': '%s' % (host.app),'host_name': '%s' % (host.host_name),
-                'system_version': '%s' % (host.system_version),
-                'cpu_num': '%s' % (host.cpu_num),'disk_size': '%s' % (host.disk_size),
-                'mem_size': '%s' % (host.mem_size),'host_note': '%s' % (host.host_note)}
-        b.append(host_dict)
+        grains_ret = api_exec('%s' %(host.local_ip), 'grains.items')['return'][0]
+        if grains_ret:
+            grains_ret_result = grains_ret.values()[0]
+            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_name': '%s' % (grains_ret_result['localhost']),
+                'system_version': '%s %s' % (grains_ret_result['os'],grains_ret_result['osrelease']),
+                'cpu_num': '%s' % (grains_ret_result['num_cpus']),
+                'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
+            b.append(host_dict)
+        else:
+            pass
     return render(request, 'assetmanage/host_table.html', {'b' : b})
 
 @login_required
@@ -183,17 +189,9 @@ def host_add(request):
     host_ip = Assetmanage.objects.get(server_ip=request.GET['host_ip'])
     local_ip = request.GET['local_ip']
     app = request.GET['app']
-    host_name = request.GET['host_name']
-    system_version = request.GET['system_version']
-    cpu_num = request.GET['cpu_num']
-    disk_size = request.GET['disk_size']
-    mem_size = request.GET['mem_size']
     host_note = request.GET['host_note']
     Hostinfo.objects.create(host_ip=host_ip,local_ip="%s" % (local_ip),
-                               app="%s" % (app),host_name="%s" % (host_name),
-                               system_version="%s" % (system_version),cpu_num="%s" % (cpu_num),
-                               disk_size="%s" % (disk_size),mem_size="%s" % (mem_size),
-                               host_note="%s" % (host_note))
+                               app="%s" % (app),host_note="%s" % (host_note))
     return render(request, 'assetmanage/host_add.html')
 
 @login_required
@@ -209,11 +207,6 @@ def host_update(request):
         host_ip = ''
     local_ip = request.GET['local_ip']
     app = request.GET['app']
-    host_name = request.GET['host_name']
-    system_version = request.GET['system_version']
-    cpu_num = request.GET['cpu_num']
-    disk_size = request.GET['disk_size']
-    mem_size = request.GET['mem_size']
     host_note = request.GET['host_note']
     update = Hostinfo.objects.get(local_ip="%s" % (local_ip))
     if host_ip != '':
@@ -221,21 +214,6 @@ def host_update(request):
         update.save()
     if app != '':
         update.app = "%s" % (app)
-        update.save()
-    if host_name != '':
-        update.host_name = "%s" % (host_name)
-        update.save()
-    if system_version != '':
-        update.system_version = "%s" % (system_version)
-        update.save()
-    if cpu_num != '':
-        update.cpu_num = "%s" % (cpu_num)
-        update.save()
-    if disk_size != '':
-        update.disk_size = "%s" % (disk_size)
-        update.save()
-    if mem_size != '':
-        update.mem_size = "%s" % (mem_size)
         update.save()
     if host_note != '':
         update.host_note = "%s" % (host_note)
@@ -261,10 +239,15 @@ def host_list(request, server_ip):
     b=[]
     host_list = Assetmanage.objects.get(server_ip=server_ip).asset_set.all()
     for host in host_list:
-        host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
-                    'app': '%s' % (host.app),'host_name': '%s' % (host.host_name),
-                    'system_version': '%s' % (host.system_version),
-                    'cpu_num': '%s' % (host.cpu_num),'disk_size': '%s' % (host.disk_size),
-                    'mem_size': '%s' % (host.mem_size),'host_note': '%s' % (host.host_note)}
-        b.append(host_dict)
+        grains_ret = api_exec('%s' %(host.local_ip), 'grains.items')['return'][0]
+        if grains_ret:
+            grains_ret_result = grains_ret.values()[0]
+            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_name': '%s' % (grains_ret_result['localhost']),
+                'system_version': '%s %s' % (grains_ret_result['os'],grains_ret_result['osrelease']),
+                'cpu_num': '%s' % (grains_ret_result['num_cpus']),
+                'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
+            b.append(host_dict)
+        else:
+            pass
     return render(request, 'assetmanage/host_table_relate.html', {'b' : b})

@@ -32,11 +32,6 @@ class Hostinfo(models.Model):
     host_ip =  models.ForeignKey(Assetmanage,related_name='asset_set')
     local_ip = models.CharField(max_length = 20,unique=True)
     app = models.CharField(max_length = 50,default='-')
-    host_name = models.CharField(max_length = 20)
-    system_version = models.CharField(max_length = 20)
-    cpu_num =  models.CharField(max_length = 20)
-    disk_size = models.CharField(max_length = 20)
-    mem_size = models.CharField(max_length = 20)
     host_note = models.CharField(max_length = 200,default='-')
 
     def __unicode__(self):
