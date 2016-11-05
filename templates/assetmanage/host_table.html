@@ -39,6 +39,7 @@
                                     				<th>CPU核数</th>
                                     				<th>内存大小(M)</th>
                                     				<th>备注</th>
+                                                    <th>管理</th>
                                 				</tr>
                             				</thead>
                             				<tbody>
@@ -52,6 +53,7 @@
                                     				<td>{{ i.cpu_num }}</td>
                                     				<td>{{ i.mem_size }}</td>
                                     				<td class="center">{{ i.host_note }}</td>
+                                                    <td><a href="/assetmanage/host_update_arg_keep/?local_ip={{ i.local_ip }}"><button class="btn btn-warning btn-xs" type="button">更改</button></a> <a href="/assetmanage/host_del/?local_ip={{ i.local_ip }}"><button class="btn btn-danger btn-xs" type="button">删除</button></a></td>
                                 				</tr>
                             				{% endfor %}
                             				</tbody>

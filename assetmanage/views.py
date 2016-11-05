@@ -72,7 +72,18 @@ def asset_add(request):
                                card_type_num="%s" % (card_type_num),power_num="%s" % (power_num),
                                service_num="%s" % (service_num),buy_time="%s" % (buy_time),
                                expiration_time="%s" % (expiration_time),note="%s" % (note))
-        return render(request, 'assetmanage/asset_add.html')
+        asset = Assetmanage.objects.get(asset_num="%s" % (asset_num))
+        asset_add = {'asset_num': '%s' % (asset.asset_num),'type': '%s' % (asset.type),
+                 'server_ip': '%s' % (asset.server_ip),'remote_ip': '%s' % (asset.remote_ip),
+                 'data_center': '%s' % (asset.data_center),
+                 'room_num': '%s' % (asset.room_num),'rack_num': '%s' % (asset.rack_num),
+                 'system_type': '%s' % (asset.system_type),'cputype_num': '%s' % (asset.cputype_num),
+                 'disksize_num': '%s' % (asset.disksize_num),'memsize_num': '%s' % (asset.memsize_num),
+                 'disk_raid': '%s' % (asset.disk_raid),'card_type_num': '%s' % (asset.card_type_num),
+                 'power_num': '%s' % (asset.power_num),'service_num': '%s' % (asset.service_num),
+                 'buy_time': '%s' % (asset.buy_time),'expiration_time': '%s' % (asset.expiration_time),
+                 'note': '%s' % (asset.note)}
+        return render(request, 'assetmanage/asset_add_result.html',{'asset_add':asset_add})
 
 @login_required
 def asset_add_html(request):
@@ -150,17 +161,55 @@ def asset_update(request):
     if note != '':
         update.note = "%s" % (note)
         update.save()
-    return render(request, 'assetmanage/asset_update.html')
+    asset = Assetmanage.objects.get(asset_num="%s" % (asset_num))
+    asset_update = {'asset_num': '%s' % (asset.asset_num),'type': '%s' % (asset.type),
+                 'server_ip': '%s' % (asset.server_ip),'remote_ip': '%s' % (asset.remote_ip),
+                 'data_center': '%s' % (asset.data_center),
+                 'room_num': '%s' % (asset.room_num),'rack_num': '%s' % (asset.rack_num),
+                 'system_type': '%s' % (asset.system_type),'cputype_num': '%s' % (asset.cputype_num),
+                 'disksize_num': '%s' % (asset.disksize_num),'memsize_num': '%s' % (asset.memsize_num),
+                 'disk_raid': '%s' % (asset.disk_raid),'card_type_num': '%s' % (asset.card_type_num),
+                 'power_num': '%s' % (asset.power_num),'service_num': '%s' % (asset.service_num),
+                 'buy_time': '%s' % (asset.buy_time),'expiration_time': '%s' % (asset.expiration_time),
+                 'note': '%s' % (asset.note)}
+    return render(request, 'assetmanage/asset_update_result.html', {'asset_update':asset_update})
 
 @login_required
 def asset_update_html(request):
     return render(request, 'assetmanage/asset_update.html')
 
 @login_required
+def asset_update_arg_keep(request):
+    asset_num = request.GET['asset_num']
+    asset = Assetmanage.objects.get(asset_num="%s" % (asset_num))
+    asset_update = {'asset_num': '%s' % (asset.asset_num),'type': '%s' % (asset.type),
+                    'server_ip': '%s' % (asset.server_ip),'remote_ip': '%s' % (asset.remote_ip),
+                    'data_center': '%s' % (asset.data_center),
+                    'room_num': '%s' % (asset.room_num),'rack_num': '%s' % (asset.rack_num),
+                    'system_type': '%s' % (asset.system_type),'cputype_num': '%s' % (asset.cputype_num),
+                    'disksize_num': '%s' % (asset.disksize_num),'memsize_num': '%s' % (asset.memsize_num),
+                    'disk_raid': '%s' % (asset.disk_raid),'card_type_num': '%s' % (asset.card_type_num),
+                    'power_num': '%s' % (asset.power_num),'service_num': '%s' % (asset.service_num),
+                    'buy_time': '%s' % (asset.buy_time),'expiration_time': '%s' % (asset.expiration_time),
+                    'note': '%s' % (asset.note)}
+    return render(request, 'assetmanage/asset_update_arg_keep.html', {'asset_update':asset_update})
+
+@login_required
 def asset_del(request):
     asset_num = request.GET['asset_num']
+    asset = Assetmanage.objects.get(asset_num="%s" % (asset_num))
+    asset_del = {'asset_num': '%s' % (asset.asset_num),'type': '%s' % (asset.type),
+                 'server_ip': '%s' % (asset.server_ip),'remote_ip': '%s' % (asset.remote_ip),
+                 'data_center': '%s' % (asset.data_center),
+                 'room_num': '%s' % (asset.room_num),'rack_num': '%s' % (asset.rack_num),
+                 'system_type': '%s' % (asset.system_type),'cputype_num': '%s' % (asset.cputype_num),
+                 'disksize_num': '%s' % (asset.disksize_num),'memsize_num': '%s' % (asset.memsize_num),
+                 'disk_raid': '%s' % (asset.disk_raid),'card_type_num': '%s' % (asset.card_type_num),
+                 'power_num': '%s' % (asset.power_num),'service_num': '%s' % (asset.service_num),
+                 'buy_time': '%s' % (asset.buy_time),'expiration_time': '%s' % (asset.expiration_time),
+                 'note': '%s' % (asset.note)}
     Assetmanage.objects.get(asset_num="%s" % (asset_num)).delete()
-    return render(request, 'assetmanage/asset_del.html')
+    return render(request, 'assetmanage/asset_del_result.html', {'asset_del' : asset_del})
 
 @login_required
 def asset_del_html(request):
@@ -181,18 +230,27 @@ def host_table(request):
                 'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
             b.append(host_dict)
         else:
-            pass
+            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s(False)' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+            b.append(host_dict)
     return render(request, 'assetmanage/host_table.html', {'b' : b})
 
 @login_required
 def host_add(request):
-    host_ip = Assetmanage.objects.get(server_ip=request.GET['host_ip'])
+    ser_ip=request.GET['host_ip']
     local_ip = request.GET['local_ip']
     app = request.GET['app']
     host_note = request.GET['host_note']
-    Hostinfo.objects.create(host_ip=host_ip,local_ip="%s" % (local_ip),
+    if ser_ip == "" or local_ip == "":
+        return render(request, 'assetmanage/host_add_null.html')
+    else:
+        host_ip = Assetmanage.objects.get(server_ip=ser_ip)
+        Hostinfo.objects.create(host_ip=host_ip,local_ip="%s" % (local_ip),
                                app="%s" % (app),host_note="%s" % (host_note))
-    return render(request, 'assetmanage/host_add.html')
+        host = Hostinfo.objects.get(local_ip="%s" % (local_ip))
+        host_add = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+    return render(request, 'assetmanage/host_add_result.html', {'host_add':host_add})
 
 @login_required
 def host_add_html(request):
@@ -218,17 +276,30 @@ def host_update(request):
     if host_note != '':
         update.host_note = "%s" % (host_note)
         update.save()
-    return render(request, 'assetmanage/host_update.html')
+    host = Hostinfo.objects.get(local_ip="%s" % (local_ip))
+    host_update = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+    return render(request, 'assetmanage/host_update_result.html', {'host_update':host_update})
 
 @login_required
 def host_update_html(request):
     return render(request, 'assetmanage/host_update.html')
 
+def host_update_arg_keep(request):
+    local_ip = request.GET['local_ip']
+    host = Hostinfo.objects.get(local_ip="%s" % (local_ip))
+    host_update = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+    return render(request, 'assetmanage/host_update_arg_keep.html', {'host_update':host_update})
+
 @login_required
 def host_del(request):
     local_ip = request.GET['local_ip']
+    host = Hostinfo.objects.get(local_ip="%s" % (local_ip))
+    host_del = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
     Hostinfo.objects.get(local_ip="%s" % (local_ip)).delete()
-    return render(request, 'assetmanage/host_del.html')
+    return render(request, 'assetmanage/host_del_result.html', {'host_del':host_del})
 
 @login_required
 def host_del_html(request):
@@ -249,5 +320,7 @@ def host_list(request, server_ip):
                 'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
             b.append(host_dict)
         else:
-            pass
-    return render(request, 'assetmanage/host_table_relate.html', {'b' : b})
+            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s(False)' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+            b.append(host_dict)
+    return render(request, 'assetmanage/host_table_relate.html', {'b' : b, 'server_ip':server_ip})

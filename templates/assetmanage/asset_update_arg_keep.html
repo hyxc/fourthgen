@@ -28,14 +28,14 @@
                         <form action="/assetmanage/asset_update/" method="get" role="form">
                         <ul>
                         <div class="form-group col-lg-3">
-                            <label style="color: orange"><label style="color: red">*</label> 资产编号：<input class="form-control" name="asset_num" ></label>
-                            <label style="color: orange">设备类型：<input class="form-control" name="type"></label>
-                            <label style="color: orange">服务器IP：<input class="form-control" name="server_ip"></label>
-                            <label style="color: orange">远控卡IP：<input class="form-control" name="remote_ip"></label>
+                            <label style="color: orange">资产编号：<input id="disabledInput" class="form-control" placeholder="Disabled input" readonly="readonly" name="asset_num" value="{{ asset_update.asset_num }}"></label>
+                            <label style="color: orange">设备类型：<input class="form-control" name="type" value="{{ asset_update.type }}"></label>
+                            <label style="color: orange">服务器IP：<input class="form-control" name="server_ip" value="{{ asset_update.server_ip }}"></label>
+                            <label style="color: orange">远控卡IP：<input class="form-control" name="remote_ip" value="{{ asset_update.remote_ip }}"></label>
                             <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                 <label style="color: orange">数据中心：
                                     <select class="form-control" name="data_center">
-                                        <option></option>
+                                        <option>{{ asset_update.data_center }}</option>
                                         <option>电信兆维</option>
                                         <option>世纪互联</option>
                                         <option>互联通</option>
@@ -46,12 +46,12 @@
                         </ul>
                         <ul>
                         <div class="form-group col-lg-3">
-                            <label style="color: orange">机房编号：<input class="form-control" name="room_num"></label>
-                            <label style="color: orange">机柜编号：<input class="form-control" name="rack_num"></label>
+                            <label style="color: orange">机房编号：<input class="form-control" name="room_num" value="{{ asset_update.room_num }}"></label>
+                            <label style="color: orange">机柜编号：<input class="form-control" name="rack_num" value="{{ asset_update.rack_num }}"></label>
                             <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                 <label style="color: orange">系统类型：
                                     <select class="form-control" name="system_type">
-                                        <option></option>
+                                        <option>{{ asset_update.system_type }}</option>
                                         <option>ESXI 5.1</option>
                                         <option>CentOS 6.5</option>
                                         <option>CentOS 7.2</option>
@@ -63,17 +63,17 @@
                                     </select>
                                 </label>
                             </div>
-                            <label style="color: orange">CPU型号、核数及个数：<input class="form-control" name="cputype_num"></label>
-                            <label style="color: orange">磁盘大小、数目：<input class="form-control" name="disksize_num"></label>
+                            <label style="color: orange">CPU型号、核数及个数：<input class="form-control" name="cputype_num" value="{{ asset_update.cputype_num }}"></label>
+                            <label style="color: orange">磁盘大小、数目：<input class="form-control" name="disksize_num" value="{{ asset_update.disksize_num }}"></label>
                         </div>
                         </ul>
                         <ul>
                         <div class="form-group col-lg-3">
-                            <label style="color: orange">内存大小、数目：<input class="form-control" name="memsize_num"></label>
+                            <label style="color: orange">内存大小、数目：<input class="form-control" name="memsize_num" value="{{ asset_update.memsize_num }}"></label>
                             <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                 <label style="color: orange">磁盘阵列：
                                     <select class="form-control" name="disk_raid">
-                                        <option></option>
+                                        <option>{{ asset_update.disk_raid }}</option>
                                         <option>RAID 5</option>
                                         <option>RAID 0</option>
                                         <option>RAID 1</option>
@@ -84,7 +84,7 @@
                             <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                 <label style="color: orange">网卡类型、数目：
                                     <select class="form-control" name="card_type_num">
-                                        <option></option>
+                                        <option>{{ asset_update.card_type_num }}</option>
                                         <option>千兆x4</option>
                                         <option>千兆x2</option>
                                         <option>万兆x2</option>
@@ -95,20 +95,20 @@
                             <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                 <label style="color: orange">电源数目：
                                     <select class="form-control" name="power_num">
-                                        <option></option>
+                                        <option>{{ asset_update.power_num }}</option>
                                         <option>2</option>
                                         <option>1</option>
                                     </select>
                                 </label>
                             </div>
-                            <label style="color: orange">服务编号：<input class="form-control" name="service_num"></label>
+                            <label style="color: orange">服务编号：<input class="form-control" name="service_num" value="{{ asset_update.service_num }}"></label>
                         </div>
                         </ul>
                         <ul>
                         <div class="form-group col-lg-3">
-                            <label style="color: orange">购买时间：<input class="form-control" name="buy_time"></label>
-                            <label style="color: orange">过期时间：<input class="form-control" name="expiration_time"></label>
-                            <label style="color: orange">备注：<input class="form-control" name="note"></label>
+                            <label style="color: orange">购买时间：<input class="form-control" name="buy_time" value="{{ asset_update.buy_time }}"></label>
+                            <label style="color: orange">过期时间：<input class="form-control" name="expiration_time" value="{{ asset_update.expiration_time }}"></label>
+                            <label style="color: orange">备注：<input class="form-control" name="note" value="{{ asset_update.note }}"></label>
                             <br><input class="btn btn-warning btn-sm" type="submit" value="更新">
                         </div>
                         </ul>

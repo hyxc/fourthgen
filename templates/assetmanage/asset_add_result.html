@@ -111,6 +111,64 @@
                                 </ul>
                         </form>
                     </div>
+                    <br>
+                    <label style="color: red;font-size: 14px;" class="fa fa-plus-square"> 添加成功，附表如下：</label>
+                    <div class="row"> 
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                            <pre style="line-height: 0px">
+                                <table class="table table-bordered table-hover table-striped" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
+                                    <thead>
+                                        <tr>
+                                            <th>资产编号</th>
+                                            <th>设备类型</th>
+                                            <th>服务器IP</th>
+                                            <th>远控卡IP</th>
+                                            <th>数据中心</th>
+                                            <th>机房编号</th>
+                                            <th>机柜编号</th>
+                                            <th>系统类型</th>
+                                            <th>CPU型号、数目</th>
+                                            <th>磁盘大小、数目</th>
+                                            <th>内存大小、数目</th>
+                                            <th>磁盘阵列</th>
+                                            <th>网卡类型、数目</th>
+                                            <th>电源数目</th>
+                                            <th>服务编号</th>
+                                            <th>购买时间</th>
+                                            <th>过期时间</th>
+                                            <th>备注</th>
+                                            <th>管理</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ asset_add.asset_num }}</td>
+                                            <td>{{ asset_add.type }}</td>
+                                            <td>{{ asset_add.server_ip }}</td>
+                                            <td>{{ asset_add.remote_ip }}</td>
+                                            <td>{{ asset_add.data_center }}</td>
+                                            <td>{{ asset_add.room_num }}</td>
+                                            <td>{{ asset_add.rack_num }}</td>
+                                            <td>{{ asset_add.system_type }}</td>
+                                            <td>{{ asset_add.cputype_num }}</td>
+                                            <td>{{ asset_add.disksize_num }}</td>
+                                            <td>{{ asset_add.memsize_num }}</td>
+                                            <td>{{ asset_add.disk_raid }}</td>
+                                            <td>{{ asset_add.card_type_num }}</td>
+                                            <td>{{ asset_add.power_num }}</td>
+                                            <td>{{ asset_add.service_num }}</td>
+                                            <td>{{ asset_add.buy_time }}</td>
+                                            <td>{{ asset_add.expiration_time }}</td>
+                                            <td>{{ asset_add.note }}</td>
+                                            <td><a href="/assetmanage/asset_update_arg_keep/?asset_num={{ asset_add.asset_num }}"><button class="btn btn-warning btn-xs" type="button">更改</button></a> <a href="/assetmanage/asset_del/?asset_num={{ asset_add.asset_num }}"><button class="btn btn-danger btn-xs" type="button">删除</button></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

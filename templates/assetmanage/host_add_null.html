@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}虚拟主机信息添加{% endblock %}
+
+{% block content %}
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="page-header">虚拟主机信息</h3>
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li><a href="/assetmanage/host_table/">查看信息</a>
+                </li>
+                <li class="active"><a href="/assetmanage/host_add_html/">添加信息</a>
+                </li>
+                <li><a href="/assetmanage/host_update_html/">修改信息</a>
+                </li>
+                <li><a href="/assetmanage/host_del_html/">删除信息</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                    <br>
+                    <ul><div style="color: red;font-size: 14px;"><B>(主机IP、宿主IP不允许为空！)</B></div></ul>
+                            <form action="/assetmanage/host_add/" method="get" role="form">
+                                    <ul>
+                                    <div class="form-group col-lg-4">
+                                        <label style="color: green"><label style="color: red">*</label> 主机IP：<input class="form-control" name="local_ip"></label>
+                                        <label style="color: green"><label style="color: red">*</label> 宿主IP：<input class="form-control" name="host_ip" ></label>
+                                        <label style="color: green">应用：<input class="form-control" name="app"></label>
+                                        <label style="color: green">备注：<input class="form-control" name="host_note"></label>
+                                        <br><input class="btn btn-primary btn-sm" type="submit" value="添加">
+                                    </div>
+                                    </ul>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

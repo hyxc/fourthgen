@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}虚拟主机信息删除{% endblock %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">虚拟主机信息</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li><a href="/assetmanage/host_table/">查看信息</a>
+                </li>
+                <li><a href="/assetmanage/host_add_html/">添加信息</a>
+                </li>
+                <li><a href="/assetmanage/host_update_html/">修改信息</a>
+                </li>
+                <li class="active"><a href="/assetmanage/host_del_html/">删除信息</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                    <br>
+                        <form action="/assetmanage/host_del/" method="get" role="form">
+                        <ul>
+                            <div class="form-group col-lg-4">
+                                <label style="color: red"><label style="color: red">*</label> 主机IP：<input class="form-control" name="local_ip" ></label>
+                                <br><input class="btn btn-danger btn-sm" type="submit" value="删除">
+                            </div>
+                        </ul>
+                        </form>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <label style="color: red;font-size: 14px;" class="fa fa-trash-o"> 删除成功，附表如下：</label>
+                    <div class="row"> 
+                        <div class="col-lg-6">
+                            <div class="table-responsive">
+                            <pre style="line-height: 0px">
+                                <table class="table table-bordered table-hover table-striped" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
+                                    <thead>
+                                        <tr>
+                                            <th>宿主IP</th>
+                                            <th>主机IP</th>
+                                            <th>应用</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ host_del.host_ip }}</td>
+                                            <td>{{ host_del.local_ip }}</td>
+                                            <td>{{ host_del.app }}</td>
+                                            <td>{{ host_del.host_note }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

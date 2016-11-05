@@ -28,12 +28,12 @@
                     <ul><div style="color: red;font-size: 14px;"><B>(资产编号、服务器IP及服务编号不允许为空！)</B></div></ul>
                         <form action="/assetmanage/asset_add/" method="get" role="form">
                                 <ul>
-                                <div class="form-group col-lg-4">
+                                <div class="form-group col-lg-3">
                                     <label style="color: green"><label style="color: red">*</label> 资产编号：<input class="form-control" name="asset_num" ></label>
                                     <label style="color: green">设备类型：<input class="form-control" name="type"></label>
                                     <label style="color: green"><label style="color: red">*</label> 服务器IP：<input class="form-control" name="server_ip"></label>
                                     <label style="color: green">远控卡IP：<input class="form-control" name="remote_ip"></label>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                         <label style="color: green">数据中心：
                                             <select class="form-control" name="data_center">
                                                 <option></option>
@@ -43,13 +43,13 @@
                                             </select>
                                         </label>
                                     </div>
-                                    <label style="color: green">机房编号：<input class="form-control" name="room_num"></label>
                                 </div>
                                 </ul>
                                 <ul>
-                                <div class="form-group col-lg-4">
+                                <div class="form-group col-lg-3">
+                                    <label style="color: green">机房编号：<input class="form-control" name="room_num"></label>
                                     <label style="color: green">机柜编号：<input class="form-control" name="rack_num"></label>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                         <label style="color: green">系统类型：
                                             <select class="form-control" name="system_type">
                                                 <option></option>
@@ -66,8 +66,12 @@
                                     </div>
                                     <label style="color: green">CPU型号、核数及个数：<input class="form-control" name="cputype_num"></label>
                                     <label style="color: green">磁盘大小、数目：<input class="form-control" name="disksize_num"></label>
+                                </div>
+                                </ul>
+                                <ul>
+                                <div class="form-group col-lg-3">
                                     <label style="color: green">内存大小、数目：<input class="form-control" name="memsize_num"></label>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                         <label style="color: green">磁盘阵列：
                                             <select class="form-control" name="disk_raid">
                                                 <option>RAID 5</option>
@@ -77,11 +81,7 @@
                                             </select>
                                         </label>
                                     </div>
-                                </div>
-                                </ul>
-                                <ul>
-                                <div class="form-group col-lg-4">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                         <label style="color: green">网卡类型、数目：
                                             <select class="form-control" name="card_type_num">
                                                 <option>千兆x4</option>
@@ -91,7 +91,7 @@
                                             </select>
                                         </label>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
                                         <label style="color: green">电源数目：
                                             <select class="form-control" name="power_num">
                                                 <option>2</option>
@@ -100,6 +100,10 @@
                                         </label>
                                     </div>
                                     <label style="color: green"><label style="color: red">*</label> 服务编号：<input class="form-control" name="service_num"></label>
+                                </div>
+                                </ul>
+                                <ul>
+                                <div class="form-group col-lg-3">
                                     <label style="color: green">购买时间：<input class="form-control" name="buy_time"></label>
                                     <label style="color: green">过期时间：<input class="form-control" name="expiration_time"></label>
                                     <label style="color: green">备注：<input class="form-control" name="note"></label>
