@@ -20,6 +20,8 @@ minion认证管理
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_details_info.jpg)
 服务器信息新增
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/server_info_add.jpg)
+服务器信息新增结果
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_add_result.jpg)
 虚拟主机信息
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/virtual_host_info.jpg)
 物理服务器关联虚拟主机
