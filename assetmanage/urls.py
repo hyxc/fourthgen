@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^asset_update/$', views.asset_update, name='asset_update'),
     url(r'^host_table/$', views.host_table, name='host_table'),
     url(r'^host_add_html/$', views.host_add_html, name='host_add_html'),
+    url(r'^host_add_arg_keep/$', views.host_add_arg_keep, name='host_add_arg_keep'),
     url(r'^host_add/$', views.host_add, name='host_add'),
     url(r'^host_update_html/$', views.host_update_html, name='host_update_html'),
     url(r'^host_update_arg_keep/$', views.host_update_arg_keep, name='host_update_arg_keep'),

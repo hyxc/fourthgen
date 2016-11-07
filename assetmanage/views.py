@@ -257,6 +257,11 @@ def host_add_html(request):
     return render(request, 'assetmanage/host_add.html')
 
 @login_required
+def host_add_arg_keep(request):
+    server_ip = request.GET['server_ip']
+    return render(request, 'assetmanage/host_add_arg_keep.html', {'server_ip':server_ip})
+
+@login_required
 def host_update(request):
     server_ip=request.GET['host_ip']
     if server_ip != '':
