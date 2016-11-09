@@ -14,6 +14,8 @@ minion认证管理
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/remote_execute_state.jpg)
 自动化部署应用
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/autodeploy_app.jpg)
+部署计算节点
+![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/autodeploy_compute.jpg)
 物理服务器信息
 ![image](https://github.com/hyxc/fourthgen/raw/master/screenshots/physical_server_info.jpg)
 物理服务器详细信息
