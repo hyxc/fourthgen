@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django import forms
 from .models import User
+import hashlib
 from .decorators import login_required
 # Create your views here.
 class UserForm(forms.Form):
@@ -14,7 +15,8 @@ def login(request):
         if uspa.is_valid():
             username = uspa.cleaned_data['username']
             password = uspa.cleaned_data['password']
-            user = User.objects.filter(username__exact = username,password__exact = password)
+            passwdhash = hashlib.sha1(password+username+'ylhb').hexdigest()
+            user = User.objects.filter(username__exact = username,password__exact = passwdhash)
             if user:
                 request.session['username'] = username
                 return render(request, 'base.html')
@@ -32,4 +34,6 @@ def logout(request):
     except KeyError:
         pass
     return HttpResponseRedirect('/accounts/login/')
+
+
 

@@ -58,6 +58,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'fourthgen.urls'
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
