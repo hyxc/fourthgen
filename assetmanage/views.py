@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from django.shortcuts import render
 from accounts.decorators import login_required
 from .models import Assetmanage, Hostinfo
@@ -230,8 +231,8 @@ def host_table(request):
                 'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
             b.append(host_dict)
         else:
-            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s(False)' % (host.local_ip),
-                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': 'Salt未管理'}
             b.append(host_dict)
     return render(request, 'assetmanage/host_table.html', {'b' : b})
 
@@ -325,7 +326,7 @@ def host_list(request, server_ip):
                 'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
             b.append(host_dict)
         else:
-            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s(False)' % (host.local_ip),
-                'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+                'app': '%s' % (host.app),'host_note': 'Salt未管理'}
             b.append(host_dict)
     return render(request, 'assetmanage/host_table_relate.html', {'b' : b, 'server_ip':server_ip})

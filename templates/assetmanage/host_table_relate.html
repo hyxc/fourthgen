@@ -39,7 +39,7 @@
                                     <td>{{ i.system_version }}</td>
                                     <td>{{ i.cpu_num }}</td>
                                     <td>{{ i.mem_size }}</td>
-                                    <td class="center">{{ i.host_note }}</td>
+                                    <td class="center" style="color: red">{{ i.host_note }}</td>
                                     <td><a href="/assetmanage/host_update_arg_keep/?local_ip={{ i.local_ip }}"><button class="btn btn-warning btn-xs" type="button">更改</button></a> <a href="/assetmanage/host_del/?local_ip={{ i.local_ip }}"><button class="btn btn-danger btn-xs" type="button">删除</button></a></td>
                                 </tr>
                             {% endfor %}
