@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.shortcuts import render
 from accounts.decorators import login_required
-from .models import Assetmanage, Hostinfo
+from .models import Assetmanage, Hostinfo, Networkinfo
 from saltstack.saltapi import *
 # Create your views here.
 
@@ -221,19 +221,22 @@ def host_table(request):
     b=[]
     host_list = Hostinfo.objects.all()
     for host in host_list:
-        grains_ret = api_exec('%s' %(host.local_ip), 'grains.items')['return'][0]
-        if grains_ret:
-            grains_ret_result = grains_ret.values()[0]
-            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
-                'app': '%s' % (host.app),'host_name': '%s' % (grains_ret_result['localhost']),
-                'system_version': '%s %s' % (grains_ret_result['os'],grains_ret_result['osrelease']),
-                'cpu_num': '%s' % (grains_ret_result['num_cpus']),
-                'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
-            b.append(host_dict)
-        else:
-            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
-                'app': '%s' % (host.app),'host_note': 'Salt未管理'}
-            b.append(host_dict)
+#        grains_ret = api_exec('%s' %(host.local_ip), 'grains.items')['return'][0]
+#        if grains_ret:
+#            grains_ret_result = grains_ret.values()[0]
+#            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+#                'app': '%s' % (host.app),'host_name': '%s' % (grains_ret_result['localhost']),
+#                'system_version': '%s %s' % (grains_ret_result['os'],grains_ret_result['osrelease']),
+#                'cpu_num': '%s' % (grains_ret_result['num_cpus']),
+#                'mem_size': '%s' % (grains_ret_result['mem_total']),'host_note': '%s' % (host.host_note)}
+#            b.append(host_dict)
+#        else:
+#            host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+#                'app': '%s' % (host.app),'host_note': 'Salt未管理'}
+#            b.append(host_dict)
+        host_dict = {'host_ip': '%s' % (host.host_ip.server_ip),'local_ip': '%s' % (host.local_ip),
+        'app': '%s' % (host.app),'host_note': '%s' % (host.host_note)}
+        b.append(host_dict)
     return render(request, 'assetmanage/host_table.html', {'b' : b})
 
 @login_required
@@ -330,3 +333,143 @@ def host_list(request, server_ip):
                 'app': '%s' % (host.app),'host_note': 'Salt未管理'}
             b.append(host_dict)
     return render(request, 'assetmanage/host_table_relate.html', {'b' : b, 'server_ip':server_ip})
+
+@login_required
+def network_table(request):
+    a=[]
+    network_list = Networkinfo.objects.all()
+    for network in network_list:
+        network_dict = {'service_num': '%s' % (network.service_num),'type_info': '%s' % (network.type_info),
+                'server_ip': '%s' % (network.server_ip),'data_center': '%s' % (network.data_center),
+                'room_num': '%s' % (network.room_num),'rack_num': '%s' % (network.rack_num),
+                'asset_num': '%s' % (network.asset_num),'module': '%s' % (network.module),
+                'available_intf': '%s' % (network.available_intf),'buy_time': '%s' % (network.buy_time),
+                'expiration_time': '%s' % (network.expiration_time),'note': '%s' % (network.note)}
+        a.append(network_dict)
+    return render(request, 'assetmanage/network_table.html', {'a' : a})
+
+@login_required
+def network_add(request):
+    service_num = request.GET['service_num']
+    type_info = request.GET['type_info']
+    server_ip = request.GET['server_ip']
+    data_center = request.GET['data_center']
+    room_num = request.GET['room_num']
+    rack_num = request.GET['rack_num']
+    asset_num = request.GET['asset_num']
+    module = request.GET['module']
+    available_intf = request.GET['available_intf']
+    buy_time = request.GET['buy_time']
+    expiration_time = request.GET['expiration_time']
+    note = request.GET['note']
+    if service_num == "":
+        return render(request, 'assetmanage/network_add_null.html')
+    else:
+        Networkinfo.objects.create(service_num="%s" % (service_num),type_info="%s" % (type_info),
+                               server_ip="%s" % (server_ip),data_center="%s" % (data_center),
+                               room_num="%s" % (room_num),rack_num="%s" % (rack_num),
+                               asset_num="%s" % (asset_num),module="%s" % (module),
+                               available_intf="%s" % (available_intf),buy_time="%s" % (buy_time),
+                               expiration_time="%s" % (expiration_time),note="%s" % (note))
+        network = Networkinfo.objects.get(service_num="%s" % (service_num))
+        network_add = {'service_num': '%s' % (network.service_num),'type_info': '%s' % (network.type_info),
+                    'server_ip': '%s' % (network.server_ip),'data_center': '%s' % (network.data_center),
+                    'room_num': '%s' % (network.room_num),'rack_num': '%s' % (network.rack_num),
+                    'asset_num': '%s' % (network.asset_num),'module': '%s' % (network.module),
+                    'available_intf': '%s' % (network.available_intf),'buy_time': '%s' % (network.buy_time),
+                    'expiration_time': '%s' % (network.expiration_time),'note': '%s' % (network.note)}
+        return render(request, 'assetmanage/network_add_result.html',{'network_add':network_add})
+
+@login_required
+def network_add_html(request):
+    return render(request, 'assetmanage/network_add.html')
+
+@login_required
+def network_update(request):
+    service_num = request.GET['service_num']
+    type_info = request.GET['type_info']
+    server_ip = request.GET['server_ip']
+    data_center = request.GET['data_center']
+    room_num = request.GET['room_num']
+    rack_num = request.GET['rack_num']
+    asset_num = request.GET['asset_num']
+    module = request.GET['module']
+    available_intf = request.GET['available_intf']
+    buy_time = request.GET['buy_time']
+    expiration_time = request.GET['expiration_time']
+    note = request.GET['note']
+    update = Networkinfo.objects.get(service_num="%s" % (service_num))
+    if type_info != '':
+        update.type_info = "%s" % (type_info)
+        update.save()
+    if server_ip != '':
+        update.server_ip = "%s" % (server_ip)
+        update.save()
+    if data_center != '':
+        update.data_center = "%s" % (data_center)
+        update.save()
+    if room_num != '':
+        update.room_num = "%s" % (room_num)
+        update.save()
+    if rack_num != '':
+        update.rack_num = "%s" % (rack_num)
+        update.save()
+    if asset_num != '':
+        update.asset_num = "%s" % (asset_num)
+        update.save()
+    if module != '':
+        update.module = "%s" % (module)
+        update.save()
+    if available_intf != '':
+        update.available_intf = "%s" % (available_intf)
+        update.save()
+    if buy_time != '':
+        update.buy_time = "%s" % (buy_time)
+        update.save()
+    if expiration_time != '':
+        update.expiration_time = "%s" % (expiration_time)
+        update.save()
+    if note != '':
+        update.note = "%s" % (note)
+        update.save()
+    network = Networkinfo.objects.get(service_num="%s" % (service_num))
+    network_update = {'service_num': '%s' % (network.service_num),'type_info': '%s' % (network.type_info),
+                    'server_ip': '%s' % (network.server_ip),'data_center': '%s' % (network.data_center),
+                    'room_num': '%s' % (network.room_num),'rack_num': '%s' % (network.rack_num),
+                    'asset_num': '%s' % (network.asset_num),'module': '%s' % (network.module),
+                    'available_intf': '%s' % (network.available_intf),'buy_time': '%s' % (network.buy_time),
+                    'expiration_time': '%s' % (network.expiration_time),'note': '%s' % (network.note)}
+    return render(request, 'assetmanage/network_update_result.html', {'network_update':network_update})
+
+@login_required
+def network_update_html(request):
+    return render(request, 'assetmanage/network_update.html')
+
+@login_required
+def network_update_arg_keep(request):
+    service_num = request.GET['service_num']
+    network = Networkinfo.objects.get(service_num="%s" % (service_num))
+    network_update = {'service_num': '%s' % (network.service_num),'type_info': '%s' % (network.type_info),
+                    'server_ip': '%s' % (network.server_ip),'data_center': '%s' % (network.data_center),
+                    'room_num': '%s' % (network.room_num),'rack_num': '%s' % (network.rack_num),
+                    'asset_num': '%s' % (network.asset_num),'module': '%s' % (network.module),
+                    'available_intf': '%s' % (network.available_intf),'buy_time': '%s' % (network.buy_time),
+                    'expiration_time': '%s' % (network.expiration_time),'note': '%s' % (network.note)}
+    return render(request, 'assetmanage/network_update_arg_keep.html', {'network_update':network_update})
+
+@login_required
+def network_del(request):
+    service_num = request.GET['service_num']
+    network = Networkinfo.objects.get(service_num="%s" % (service_num))
+    network_del = {'service_num': '%s' % (network.service_num),'type_info': '%s' % (network.type_info),
+                    'server_ip': '%s' % (network.server_ip),'data_center': '%s' % (network.data_center),
+                    'room_num': '%s' % (network.room_num),'rack_num': '%s' % (network.rack_num),
+                    'asset_num': '%s' % (network.asset_num),'module': '%s' % (network.module),
+                    'available_intf': '%s' % (network.available_intf),'buy_time': '%s' % (network.buy_time),
+                    'expiration_time': '%s' % (network.expiration_time),'note': '%s' % (network.note)}
+    Networkinfo.objects.get(service_num="%s" % (service_num)).delete()
+    return render(request, 'assetmanage/network_del_result.html', {'network_del' : network_del})
+
+@login_required
+def network_del_html(request):
+    return render(request, 'assetmanage/network_del.html')

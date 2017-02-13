@@ -21,4 +21,12 @@ urlpatterns = [
     url(r'^host_del_html/$', views.host_del_html, name='host_del_html'),
     url(r'^host_del/$', views.host_del, name='host_del'),
     url(r'^host_list/(?P<server_ip>[^/]+)/$', views.host_list, name='host_list'),
+    url(r'^network_table/$', views.network_table, name='network_table'),
+    url(r'^network_add_html/$', views.network_add_html, name='network_add_html'),
+    url(r'^network_add/$', views.network_add, name='network_add'),
+    url(r'^network_update_html/$', views.network_update_html, name='network_update_html'),
+    url(r'^network_update_arg_keep/$', views.network_update_arg_keep, name='network_update_arg_keep'),
+    url(r'^network_update/$', views.network_update, name='network_update'),
+    url(r'^network_del_html/$', views.network_del_html, name='network_del_html'),
+    url(r'^network_del/$', views.network_del, name='network_del'),
 ]

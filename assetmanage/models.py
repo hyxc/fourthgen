@@ -37,3 +37,19 @@ class Hostinfo(models.Model):
     def __unicode__(self):
         return self.local_ip
 
+class Networkinfo(models.Model):
+    service_num =  models.CharField(max_length = 50,unique=True)
+    type_info = models.CharField(max_length = 50)
+    server_ip = models.CharField(max_length = 20,default='-')
+    data_center = models.CharField(max_length = 50)
+    room_num = models.CharField(max_length = 20)
+    rack_num = models.CharField(max_length = 20)
+    asset_num = models.CharField(max_length = 50,default='-')
+    module = models.CharField(max_length = 50,default='-')
+    available_intf = models.CharField(max_length = 100,default='-')
+    buy_time = models.CharField(max_length = 50,default='-')
+    expiration_time = models.CharField(max_length = 50,default='-')
+    note = models.CharField(max_length = 200,default='-')
+
+    def __unicode__(self):
+        return self.service_num

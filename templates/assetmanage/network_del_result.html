@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}网络设备信息删除{% endblock %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">网络设备信息</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li><a href="/assetmanage/network_table/">查看信息</a>
+                </li>
+                <li><a href="/assetmanage/network_add_html/">添加信息</a>
+                </li>
+                <li><a href="/assetmanage/network_update_html/">修改信息</a>
+                </li>
+                <li class="active"><a href="/assetmanage/network_del_html/">删除信息</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active">
+                    <div class="row">
+                        <br>
+                        <form action="/assetmanage/network_del/" method="get" role="form">
+                            <ul>
+                            <div class="form-group col-lg-3">
+                                <label style="color: red"><label style="color: red">*</label> 服务编号：<input class="form-control" name="service_num" ></label>
+                                <br><input class="btn btn-danger btn-sm" type="submit" value="删除">
+                            </div>
+                            </ul>
+                        </form>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <label style="color: red;font-size: 14px;" class="fa fa-trash-o"> 删除成功，附表如下：</label>
+                    <div class="row"> 
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                            <pre style="line-height: 0px">
+                                <table class="table table-bordered table-hover table-striped" style="margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
+                                    <thead>
+                                        <tr>
+                                            <th>服务编号</th>
+                                            <th>设备信息</th>
+                                            <th>IP</th>
+                                            <th>数据中心</th>
+                                            <th>机房编号</th>
+                                            <th>机柜编号</th>
+                                            <th>资产编号</th>
+                                            <th>模块</th>
+                                            <th>可用接口</th>
+                                            <th>购买时间</th>
+                                            <th>过期时间</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ network_del.service_num }}</td>
+                                            <td>{{ network_del.type_info }}</td>
+                                            <td>{{ network_del.server_ip }}</td>
+                                            <td>{{ network_del.data_center }}</td>
+                                            <td>{{ network_del.room_num }}</td>
+                                            <td>{{ network_del.rack_num }}</td>
+                                            <td>{{ network_del.asset_num }}</td>
+                                            <td>{{ network_del.module }}</td>
+                                            <td>{{ network_del.available_intf }}</td>
+                                            <td>{{ network_del.buy_time }}</td>
+                                            <td>{{ network_del.expiration_time }}</td>
+                                            <td>{{ network_del.note }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
